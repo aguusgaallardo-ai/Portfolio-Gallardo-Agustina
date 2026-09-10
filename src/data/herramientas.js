@@ -4,9 +4,9 @@
 export const herramientas = [
     { nombre: "SQL", dominio: 80 },
     { nombre: "GitHub", dominio: 80 },
-    { nombre: "Java", dominio: 50 }, 
+    { nombre: "Java", dominio: 60 }, 
     { nombre: "Spring Boot", dominio: 60 },
-    { nombre: "UML", dominio: 60 },
+    { nombre: "UML", dominio: 50 },
     { nombre: "Power BI", dominio: 85 },
     { nombre: "HTML/CSS", dominio: 80 },
     { nombre: "Python", dominio: 85 },

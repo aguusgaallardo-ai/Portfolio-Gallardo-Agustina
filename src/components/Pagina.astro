@@ -1,0 +1,39 @@
+---
+interface Props {
+    etiqueta?: string;
+    titulo?: string;
+}
+
+const { etiqueta, titulo } = Astro.props;
+---
+
+<div class="pagina">
+    {etiqueta && <p class="etiqueta pagina__etiqueta">{etiqueta}</p>}
+    {titulo && <h2 class="pagina__titulo titulo-italic">{titulo}</h2>}
+
+    <div class="pagina__contenido">
+        <slot />
+    </div>
+</div>
+
+<style>
+    .pagina {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .pagina__titulo {
+        color: var(--color-heading);
+        font-size: clamp(1.4rem, 5vw, 2rem);
+    }
+
+    .pagina__contenido {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+</style>

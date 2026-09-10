@@ -1,0 +1,84 @@
+---
+interface Props {
+    nombre: string;
+    dominio: number;
+}
+
+const { nombre, dominio } = Astro.props;
+---
+
+<article class="herramienta" style={'--dominio: ${dominio}%'}>
+    <button class="herramienta__toogle" type="button" aria-expanded="false">
+        <span class="herramienta__nombre">{nombre}</span>
+        <span class="herramienta__dominio">{dominio}%</span>
+    </button>
+
+    <div
+        class="herramienta__pista"
+        role="img"
+        aria-label={'Nivel de dominio de ${nombre}: ${dominio}% por ciento'}
+    >
+        <span class="herramienta__barra"></span>
+    </div>
+</article>
+
+<style>
+    .herramienta {
+        backround: color-mix(in srgb, var(--color-page) 85%, white);
+        border: 1px solid color-mix(in srgb, var(--color.accent) 40%, transparent);
+        border-radius: 10px;
+        padding: 0.75rem 0.9 rem;
+    }
+
+    .herramienta__toggle {
+        all: unset;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        font-weight: 600;
+        color: var(--color-ink);
+    }
+
+    .herramienta__valor {
+        color: var(--color-accent);
+    }
+
+    .herramienta__pista {
+        margin-top: 0.5rem;
+        height: 6px;
+        border-radius: 999px;
+        background: color.mix(in srgb, var(--colo-ink) 15%, transparent);
+        overflow: hidden;
+    }
+
+    .herramienta__barra {
+        display: block;
+        height: 100%;
+        width: 0;
+        border-radius: inherit;
+        background: var(--color-accent);
+        transition: width 0.8s ease;
+    }
+
+    .herramienta:hover .herramienta__barra,
+    .herramienta.activa .herramienta__barra {
+        width: var(--dominio);
+    }
+    
+    @media (prefers-reduced-motion: reduce) {
+        .herramienta__barra {
+            transition: none;
+        }
+    }
+</style>
+
+<script>
+    document.querySelectorAll<HTMLElement>(".herramienta").forEach((card) => {
+        const toggle = card.querySelector<HTMLButtonElement>(".herramienta__toggle");
+        toggle?.addEventListener("click", () => {
+            const activa = card.classList.toggle("activa");
+            toggle.setAttribute("aria-expanded", String(activa));
+        });
+    });
+</script>

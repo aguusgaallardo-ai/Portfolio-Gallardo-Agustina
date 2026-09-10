@@ -1,0 +1,159 @@
+---
+interface Props {
+    titulo: string;
+    descripcion: string;
+    tecnologias?: string[];
+    sitio?: string | null;
+    repo?: string | null;
+    anio: number;
+    estado?: string | "terminado" | "en-desarrollo";
+    contexto?: string;
+    imagen?: string | null;
+}
+
+const {
+    titulo,
+    descripcion,
+    tecnologias = [],
+    sitio,
+    repo,
+    anio,
+    estado,
+    contexto,
+    imagen,
+} = Astro.props;
+
+//El "código" del estado se traduce al texto visible acá.
+const estadoTexto = estado === "en-desarrollo" ? "En desarrollo" : null;
+---
+
+<article class="proyecto">
+  <header class="proyecto__head">
+    <h3 class="proyecto__titulo titulo-italic">{titulo}</h3>
+    {anio && <span class="proyecto__anio etiqueta">{anio}</span>}
+  </header>
+
+  {contexto && <p class="proyecto__contexto etiqueta">{contexto}</p>}
+
+  {estadoTexto && <span class="proyecto__estado">{estadoTexto}</span>}
+
+  {
+    imagen && (
+        <img
+        class="proyecto__img"
+        src={imagen}
+        alt={'Captura del proyecto ${titulo}'}
+        width="600"
+        height="360"
+        loading="lazy"
+        />
+    )
+  }
+
+  <p class="proyecto__desc">{descripcion}</p>
+
+  {
+    tecnologias.length > 0 && (
+      <ul class="proyecto__tecno">
+        {tecnologias.map((t) => (
+          <li class="etiqueta">{t}</li>
+        ))}
+      </ul>
+    )
+  }
+
+  {
+    (sitio || repo) && (
+        <div class="proyecto__links">
+            {sitio && (
+                <a href={sitio} target="_blank" rel="noopener noreferrer">Ver sitio ↗</a>
+            )}
+            {repo && (
+                <a href={repo} target="_blank" rel="noopener noreferrer">Código ↗</a>
+            )}
+        </div>  
+    )
+  }
+</article>
+
+<style>
+    .proyecto {
+        background: color-mix(in srgb, var(--color-page) 85%, white);
+        border-radius: 12px;
+        padding: 1rem 1.1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .proyecto__head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 0.5rem;
+    }
+
+    .proyecto__titulo {
+        color: var(--color-heading);
+        font-size: 1.15rem;
+    }
+
+    .proyecto__anio {
+        flex-shrink: 0;
+    }
+
+    .proyecto__contexto{
+        margin: 0;
+    }
+
+    .proyecto__estado {
+        align-self: flex-start;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        padding: 0.15rem 0.5rem;
+        border-radius: 999px;
+        background: var(--color-heading);
+        color: var(--color-page);
+    }
+
+    .proyecto__img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        display: block;
+    }
+
+    .proyecto__desc {
+        margin: 0;
+        font-size: 0.9rem;
+        line-height: 1.45;
+    }
+
+    .proyecto__tecno {
+        list-style: none;
+        padding: 0;
+        margin: 0.25rem 0 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+    }
+
+    .proyecto__tecno .etiqueta {
+        background: color-mix(in srgb, var(--color-accent) 20%, transparent);
+        padding: 0.15rem 0.5rem;
+        border-radius: 999px;
+    }
+
+    .proyecto__links {
+        display: flex;
+        gap: 0.9rem;
+        margin-top: 0.35rem;
+        font-weight: 600;
+    }
+
+    .proyecto__links a {
+        color: var(--color-heading);
+    }
+</style>
+

@@ -1,8 +1,8 @@
 ---
 export interface Props {
-  title: string;
+  title?: string;
 }
-const { title = 'Agustina Gallardo · Portfolio'} = Astro.props;
+const { title = 'Aguus Gallardo · Portfolio'} = Astro.props;
 ---
 <!doctype html>
 <html lang="es">
@@ -50,13 +50,11 @@ const { title = 'Agustina Gallardo · Portfolio'} = Astro.props;
 		background-color: var(--color-page);
 		color: var(--color-ink);
 		font-family: 'Space Grotesk', sans-serif;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		overflow: hidden;
 	}
 
-	h1, h2, h3 {
+	h1, 
+	h2, 
+	h3 {
 		font-family: "Fraunces", serif;
 		margin: 0;
 		line-height: 1.1;
@@ -75,15 +73,15 @@ const { title = 'Agustina Gallardo · Portfolio'} = Astro.props;
 		color: var(--color-label);
 	}
 
+	:focus-visible {
+		outline: 2px solid var(--color-heading);
+		outline-offset: 3px;
+	}
+
 	@media (prefers-reduced-motion: reduce) {
 		*{
 			animation-duration: 0.01ms !important;
 			transition-duration: 0.01ms !important;
 		}
-	}
-
-	:focus-visible {
-		outline: 2px solid var(--color-heading);
-		outline-offset: 3px;
 	}
 </style>

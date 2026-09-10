@@ -1,11 +1,110 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Pagina from "../components/Pagina.astro";
+import Herramienta from "../components/Herramienta.astro";
+import ProyectoCard from '../components/ProyectoCard.astro';
+import { herramientas } from "../data/herramientas.js";
+import { proyectos } from "../data/proyectos.js"
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Aguus Gallardo · Portfolio">
+	<div class="escenario">
+		<div class="libro" id="libro">
+			<!-- Hoja 0 . Tapa -->
+			 <article class="hoja hoja--tapa" data-indice="0">
+				<div class="cara">
+					<h1 class="tapa__titulo titulo-italic">Portfolio</h1>
+					<p class="etiqueta">Agustina Gallardo</p>
+				</div>
+			 </article>
+
+			 <!-- Hoja 1 Foto -->
+			  <article class="hoja" data-indice="1">
+				<div class="cara">
+					<Pagina etiqueta="01" titulo="Hola, soy Aguus">
+						<div class="foto-placeholder" aria-hidden="true">Foto</div>
+						<!-- TODO: <img src="/foto.jpg" alt="Agustina Gallardo" width="400" height="500" /> -->
+					</Pagina>
+				</div>
+			  </article>
+
+			<!--Hoja 2 Sobre mí -->
+			<article class="hoja" data-indice="2">
+				<div class="cara">
+					<Pagina etiqueta="02" titulo="Sobre mí">
+						<p>
+							Soy de Rojas, provincia de Buenos Aires. Actualmente estoy cursando el último año de la Tecnicatura en Desarrollo de Software.
+						</p>
+					</Pagina>
+				</div>
+			</article>
+
+			<!--Hoja 3 . Herramientas -->
+			<article class="hoja" data-indice="3">
+				<div class="cara">
+					<Pagina etiqueta="03" titulo="Herramientas">
+						<div class="grid-herramientas">
+							{
+								herramientas.map((h) => (
+									<Herramienta nombre={h.nombre} dominio={h.dominio} />
+								))
+							}
+						</div>
+					</Pagina>
+				</div>
+			</article>
+
+			<!-- Hoja 4. Proyctos -->
+			 <article class="hoja" data-indice="4">
+				<div class="cara">
+					<Pagina etiqueta="04" titulo="Proyectos">
+						<div class="grid-proyectos">
+							{
+								proyectos.map((p) => (
+									<ProyectoCard
+									titulo={p.titulo}
+									descripcion={p.descripcion}
+									tecnologias={p.tecnologias}
+									sitio={p.sitio}
+									repo={p.repo}
+									anio={p.anio}
+									estado={p.estado}
+									contexto={p.contexto}
+									imagen={p.imagen}
+								/>
+								))
+							}
+						</div>
+					</Pagina>
+				</div>
+			 </article>
+
+			 <!--Hoja 5 . Contacto -->
+			 <article class="hoja" data-indice="5">
+        <div class="cara">
+          <Pagina etiqueta="05" titulo="Contacto">
+            <ul class="contacto">
+              <li><a href="mailto:tu-email@ejemplo.com">tu-email@ejemplo.com</a></li>
+              <li>
+                <a href="https://github.com/tu-usuario" target="_blank" rel="noopener noreferrer">
+                  github.com/tu-usuario
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/tu-usuario" target="_blank" rel="noopener noreferrer">
+                  linkedin.com/in/tu-usuario
+                </a>
+              </li>
+            </ul>
+          </Pagina>
+        </div>
+      </article>
+		</div>
+
+		 <nav class="controles" aria-label="Navegación del portfolio">
+      		<button id="btn-anterior" type="button" disabled>‹ Anterior</button>
+     		 <span id="indicador" aria-live="polite">1 / 6</span>
+      		<button id="btn-siguiente" type="button">Siguiente ›</button>
+    	</nav>
+	</div>
 </Layout>
