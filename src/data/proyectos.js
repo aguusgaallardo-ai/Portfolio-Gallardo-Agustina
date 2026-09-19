@@ -5,7 +5,7 @@ export const proyectos = [
         estado: "terminado",
         contexto: "Practicas Profesionalizantes · trabjo grupal.",
         descripcion:
-        "Catálogo interno para una libreria familiar de Rojas, pensado para que el personal consute en cualquier momento qué hay en stock. Incluye un panel para dar de alta, editar y eliminar productos, con la información guardada en una base de datos. Se presentó en la feria de la facultad como muestra de lo que hacemos en la carreta. Es una página responsive y ahora estoy migrando la base de datos local a un servidor pra que funcione desde cualquier dispositivo dentro de la libreria.",
+        "Catálogo interno para una libreria familiar de Rojas, pensado para que el personal consulte en cualquier momento qué hay en stock. Incluye un panel para dar de alta, editar y eliminar productos, con la información guardada en una base de datos. Se presentó en la feria de la facultad como muestra de lo que hacemos en la carrera. Es una página responsive y ahora estoy migrando la base de datos local a un servidor para que funcione desde cualquier dispositivo dentro de la libreria.",
         tecnologias: ["HTML", "CSS", "JavaScript", "MySQL"],
         sitio: "https://libreria-ohana.netlify.app",
         repo: "https://github.com/quevedocandela/productos.git",

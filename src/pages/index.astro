@@ -7,14 +7,27 @@ import { herramientas } from "../data/herramientas.js";
 import { proyectos } from "../data/proyectos.js"
 ---
 
+<!--Frontmatter + HTML -->
+
 <Layout title="Aguus Gallardo · Portfolio">
 	<div class="escenario">
 		<div class="libro" id="libro">
 			<!-- Hoja 0 . Tapa -->
 			 <article class="hoja hoja--tapa" data-indice="0">
 				<div class="cara">
-					<h1 class="tapa__titulo titulo-italic">Portfolio</h1>
-					<p class="etiqueta">Agustina Gallardo</p>
+					<h1 class="tapa__titulo titulo-italic">
+						<span>Port</span>
+						<span>fo</span>
+						<span>lio</span>
+					</h1>
+					
+					<div class="tapa__firma">
+						<p class="tapa__nombre">
+							<span>Agustina</span>
+							<span>Gallardo</span>
+						</p>
+						<p class="tapa__rol">Desarrolladora</p>
+					</div>
 				</div>
 			 </article>
 
@@ -43,10 +56,20 @@ import { proyectos } from "../data/proyectos.js"
 			<article class="hoja" data-indice="3">
 				<div class="cara">
 					<Pagina etiqueta="03" titulo="Herramientas">
-						<div class="grid-herramientas">
+						<div class="categorias-herramientas">
 							{
-								herramientas.map((h) => (
-									<Herramienta nombre={h.nombre} dominio={h.dominio} />
+								herramientas.map((grupo) => (
+									<selection class="categorias">
+										<h3 class="categoria__titulo etiqueta">{grupo.categoria}</h3>
+										<ul
+										class:list={[
+											"categoria__lista",
+											{ "categoria__lista--columnas": grupo.items.length > 4 },
+										]}
+										>
+											{grupo.items.map((nombre) => <Herramienta nombre={nombre} />)}
+										</ul>
+									</selection>
 								))
 							}
 						</div>
@@ -55,56 +78,314 @@ import { proyectos } from "../data/proyectos.js"
 			</article>
 
 			<!-- Hoja 4. Proyctos -->
-			 <article class="hoja" data-indice="4">
-				<div class="cara">
-					<Pagina etiqueta="04" titulo="Proyectos">
-						<div class="grid-proyectos">
-							{
-								proyectos.map((p) => (
-									<ProyectoCard
-									titulo={p.titulo}
-									descripcion={p.descripcion}
-									tecnologias={p.tecnologias}
-									sitio={p.sitio}
-									repo={p.repo}
-									anio={p.anio}
-									estado={p.estado}
-									contexto={p.contexto}
-									imagen={p.imagen}
-								/>
-								))
-							}
-						</div>
-					</Pagina>
-				</div>
-			 </article>
+			 {
+			 proyectos.map((p, i) => (
+				<article class="hoja" data-indice={`4-${i}`}>
+					<div class="cara">
+						<Pagina etiqueta={`Proyecto ${i + 1} / ${proyectos.length}`} titulo="Proyectos">
+						<ProyectoCard
+						titulo={p.titulo}
+						descripcion={p.descripcion}
+						tecnologias={p.tecnologias}
+						sitio={p.sitio}
+						repo={p.repo}
+						anio={p.anio}
+						estado={p.estado}
+						contexto={p.contexto}
+						imagen={p.imagen}
+						/>
+						</Pagina>
+					</div>
+				</article>
+			 ))
+			 }
 
 			 <!--Hoja 5 . Contacto -->
 			 <article class="hoja" data-indice="5">
-        <div class="cara">
-          <Pagina etiqueta="05" titulo="Contacto">
-            <ul class="contacto">
-              <li><a href="mailto:tu-email@ejemplo.com">tu-email@ejemplo.com</a></li>
-              <li>
-                <a href="https://github.com/tu-usuario" target="_blank" rel="noopener noreferrer">
-                  github.com/tu-usuario
-                </a>
-              </li>
-              <li>
-                <a href="https://linkedin.com/in/tu-usuario" target="_blank" rel="noopener noreferrer">
-                  linkedin.com/in/tu-usuario
-                </a>
-              </li>
-            </ul>
-          </Pagina>
-        </div>
-      </article>
+				<div class="cara">
+					<Pagina etiqueta="05" titulo="Contacto">
+						<ul class="contacto">
+							<li><a href="mailto:tu-email@ejemplo.com">aguusgaallardo@gmail.com</a></li>
+							<li>
+								<a href="https://github.com/aguusgaallardo-ai" target="_blank" rel="noopener noreferrer">
+								</a>
+							</li>
+							<li>
+								<a href="https://linkedin.com/in/agustina-gallardo" target="_blank" rel="noopener noreferrer">
+								</a>
+							</li>
+						</ul>
+					</Pagina>
+				</div>
+			</article>
+
+			<button
+				id="borde-anterior"
+				class="borde borde--izquierda"
+				type="button"
+				aria-label="Página anterior"
+			></button>
+			<button
+				id="borde-siguiente"
+				class="borde borde--derecha"
+				type="button"
+				aria-label="Página siguiente"
+			></button>
 		</div>
 
-		 <nav class="controles" aria-label="Navegación del portfolio">
+		<nav class="controles" aria-label="Navegación del portfolio">
       		<button id="btn-anterior" type="button" disabled>‹ Anterior</button>
      		 <span id="indicador" aria-live="polite">1 / 6</span>
       		<button id="btn-siguiente" type="button">Siguiente ›</button>
     	</nav>
 	</div>
 </Layout>
+
+<!--Estilos -->
+
+<style>
+	.escenario {
+		position: fixed;
+		inset: 0;
+		display: grid;
+		place-items: center;
+		background: var(--color-stage);
+		perspective: 2200px;
+	}
+
+	.libro {
+		position: relative;
+		width: min(90vw, 460px);
+		aspect-ratio: 3 / 4;
+		transform-style: preserve-3d;
+	}
+
+	.hoja {
+		position: absolute;
+		inset: 0;
+		transform-origin: left center;
+		transform-style: preserve-3d;
+		transition: transform 0.9s ease;
+		background: var(--color-page);
+		border-radius: 4px 12px 12px 4px;
+		box-shadow: 0 24px 48px rgb(0 0 0 / 0.4);
+	}
+
+	.hoja.volteada {
+		transform: rotateY(-180deg);
+	}
+
+	.cara { 
+		position: absolute;
+		inset: 0;
+		padding: clamp(1.25rem, 5vw, 2.25rem);
+		backface-visibility: hidden;
+		overflow: hidden;
+	}
+
+	.hoja--tapa {
+		background: var(--color-book);
+	}
+
+	.hoja--tapa .cara {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	.tapa__titulo {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.05em;
+		line-height: 0.9;
+		font-family: "Abril Fatface", serif;
+		font-weight: 400;
+		color: var(--color-heading);
+		font-size: clamp(2.25rem, 10vw, 3.75rem);
+	}
+
+	.tapa__firma {
+		align-self: flex-end;
+		text-align: right;
+	}
+
+	.tapa__nombre {
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		font-family: "Grat Vibes", cursive;
+		color: var(--color-accent);
+		line-height: 1.05;
+		font-size: clamp(1.75rem, 8vw, 2.75rem);
+	}
+
+	.tapa__rol {
+		margin: 0.35rem 0 0;
+		font-family: "Montserrat" sans-serif;
+		color: var(--color-accent);
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		font-size: 0.8rem;
+	}
+
+	.categorias-herramientas {
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+	}
+
+	.categoria__titulo {
+		margin: 0 0 0.5rem;
+	}
+
+	.categoria__lista {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+	}
+
+	.categoria__lista--columnas {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap 0.4rem 0.6rem;
+	}
+
+	.contacto {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.6rem;
+		font-weight: 600;
+	}
+
+	.contacto a {
+		color: var(--color-heading);
+	}
+
+	.foto-placeholder {
+		display: grid;
+		place-items: center;
+		aspect-ratio: 4 / 5;
+		background: color-mix(in srgb, var(--color-accent) 30%, transparent);
+		border-radius: 8px;
+		color: var(--color-ink);
+		font-family: "Fraunces", serif;
+		font-style: italic;
+	}
+
+	.controles {
+		position: fixed;
+		left: 50%;
+		bottom: 1.5rem;
+		transform: translateX(-50%);
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		background: var(--color-heading);
+		color: var(--porcelain);
+		padding: 0.5rem 1rem;
+		border-radius: 999px;
+	}
+
+	.controles button {
+		all: unset;
+		cursor: pointer;
+		padding: 0.35rem 0.6rem;
+		border-radius: 999px;
+		font-weight: 600;
+	}
+
+	.controles button:disabled {
+		opacity: 0.35;
+		cursor: not-allowed;
+	}
+
+	.borde {
+		all: unset;
+		position: absolute;
+		insert: 0 auto; 
+		widht: 12%;
+		z-index: 999;
+		cursor: pointer;
+	}
+
+	.borde--izquierda {
+		left: 0;
+	}
+
+	.borde--derecha {
+		right: 0;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.hoja {
+			transition: none;
+		}
+	}
+</style>
+
+<!--Lógica de pasar página -->
+<script>
+	const hojas = [...document.querySelectorAll<HTMLElement>(".hoja")];
+	const btnAnterior = document.getElementById("btn-anterior") as HTMLButtonElement;
+	const btnSiguiente = document.getElementById("btn-siguiente") as HTMLButtonElement;
+	const bordeAnterior = document.getElementById("borde-anterior") as HTMLButtonElement;
+	const bordeSiguiente = document.getElementById("borde-siguiente") as HTMLButtonElement;
+	const indicador = document.getElementById("indicador") as HTMLElement;
+
+	const total = hojas.length; // 6 
+	let pagina = 0; // cuandtas hojas están volteadas
+
+	function render() {
+		hojas.forEach((hoja, i) => {
+			const volteada = i < pagina;
+			hoja.classList.toggle("volteada", volteada);
+			// volteadas -> z bajo; por pasar -> z alto (la actual arriba de todo)
+			hoja.style.zIndex = volteada ? String(i) : String(total - i);
+		});
+
+		const enElInicio = pagina === 0;
+		const enElFinal = pagina === total - 1;
+
+		btnAnterior.disabled = enElInicio;
+		bordeAnterior.disabled = enElInicio;
+		btnSiguiente.disabled = enElFinal;
+		bordeSiguiente.disabled = enElFinal;
+
+		indicador.textContent = `${pagina + 1} / ${total}`;
+	}
+
+	function avanzar() {
+		if (pagina < total - 1) {
+			pagina++;
+			render();
+		}
+	}
+
+	function retroceder() {
+		if (pagina > 0) {
+			pagina--;
+			render();
+		}
+	}
+
+	btnSiguiente.addEventListener("click", avanzar);
+	bordeSiguiente.addEventListener("click", avanzar);
+
+
+	btnAnterior.addEventListener("click", retroceder);
+	bordeAnterior.addEventListener("click", retroceder);
+
+	document.addEventListener("keydown", (e) => {
+		if (e.key === "ArrowRight") btnSiguiente.click();
+		if (e.key === "ArrowLeft") btnAnterior.click();
+	});
+
+	render();
+</script>

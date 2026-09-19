@@ -1,14 +1,16 @@
 // Lista de herramientas que se muestran en la página "Herramientas" del libro.
-// Para agregar o sacar una, solo editá este array: no hace falta tocar ningún componente.
 
 export const herramientas = [
-    { nombre: "SQL", dominio: 80 },
-    { nombre: "GitHub", dominio: 80 },
-    { nombre: "Java", dominio: 60 }, 
-    { nombre: "Spring Boot", dominio: 60 },
-    { nombre: "UML", dominio: 50 },
-    { nombre: "Power BI", dominio: 85 },
-    { nombre: "HTML/CSS", dominio: 80 },
-    { nombre: "Python", dominio: 85 },
-    { nombre: "Astro", dominio: 70 },
+    {
+        categoria: "Lenguajes y frameworks",
+        items: ["Java", "Spring Boot", "Python", "HTML", "CSS", "Astro"],
+    },
+    {
+        categoria: "Base de datos y versionados",
+        items: ["MySQL", "PostgreSQL", "Git"]
+    },
+    {
+        categoria: "Diseño y análisis",
+        items: ["UML", "Power BI"]
+    },
 ];

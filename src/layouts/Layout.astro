@@ -13,7 +13,7 @@ const { title = 'Aguus Gallardo · Portfolio'} = Astro.props;
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-		href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,700;1,600&family=Space+Grotesk:wght@500;600;700&display=swap"
+		href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,700;1,600&family=Great+Vibes&family=Montserrat:wght@400;500;600; 700&display=swap"
 		rel="stylesheet"
 		/>
 	</head>
@@ -25,19 +25,20 @@ const { title = 'Aguus Gallardo · Portfolio'} = Astro.props;
 <style is:global>
 	:root {
 		/* paleta */
-		--blush: #e0aeba; /* papel */
-		--tulip: #d17684; /*barras / detalles */
-		--rose: #b82635; /*títulos y acentos */
-		--olive: #786025; /* etiquetas chicas */
-		--garden: #292800; /* tinta / fondo oscuro */
+		--cherry: #670626;
+		--blush: #e8b7c2;
+		--porcelain: #f3eeec;
+		--strawberry: #db8291;
+		--aluminum: #d8d1cc;
 
 		/* roles semánticos */
-		--color-page: var(--blush);
-		--color-ink: var(--garden);
-		--color-heading: var(--rose);
-		--color-accent: var(--tulip);
-		--color-label: var(--olive);
-		--color-stage: #1c1700; /* oliva bien oscuro, fondo detrás del libro */
+		--color-stage: var(--porcelain); /* fondo general del sitio, detras del libro */
+		--color-book: var(--strawberry); /* color de la tapa del libro */
+		--color-page: var(--aluminum); /* color de las hojas internas */
+		--color-heading: var(--cherry); /* titulos (incluye "Portfolio") */
+		--color-ink: var(--blush); /* texto de las paginas internas */
+		--color-accent: var(--blush); /* nombre y "desarrolladora" en la tapa */
+		--color-label: var(--cherry); /*etiquetas chicas: "01", "02"... */
 	}
 
 	*{
@@ -49,7 +50,7 @@ const { title = 'Aguus Gallardo · Portfolio'} = Astro.props;
 		min-height: 100vh;
 		background-color: var(--color-page);
 		color: var(--color-ink);
-		font-family: 'Space Grotesk', sans-serif;
+		font-family: 'Montserrat', sans-serif;
 	}
 
 	h1, 
@@ -66,7 +67,7 @@ const { title = 'Aguus Gallardo · Portfolio'} = Astro.props;
 	}
 
 	.etiqueta {
-		font-family: "Space Grotesk", sans-serif;
+		font-family: "Montserrat", sans-serif;
 		text-transform: uppercase;
 		letter-spacing: 0.08em;
 		font-size: 0.75rem;
