@@ -34,7 +34,7 @@ const {
   </head>
   <body>
     <div class="magazine-stage">
-      <main class={`magazine-page ${title === 'Tapa' ? 'magazine-page--cover' : ''}`} style={`--page-bg:${pageBg}; --page-color:${pageColor};`}>
+      <main class={`magazine-page ${title === 'Tapa' || title === 'Contratapa' ? 'magazine-page--cover' : ''}`} style={`--page-bg:${pageBg}; --page-color:${pageColor};`}>
         <slot />
       </main>
       <PageNav label={label} prevHref={prevHref} nextHref={nextHref} />
