@@ -1,0 +1,76 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageNav from '../components/PageNav.astro';
+
+const tools = [
+    { name: 'HTML / CSS', level: 90, verdict: 'Las bases de todo. Acá me siento en casa.' },
+    { name: 'SQL', level: 85, verdict: 'La consulta favorita, sin vueltas. La manejo bien y se nota.' },
+    { name: 'Git', level: 85, veredict: 'Commit, push, pull sin drama (la mayoria de las veces).' },
+    { name: 'Power BI', level: 85, veredict: 'Númetos que se vuelven gráficos lindos, mi combo favorito.' },
+    { name: 'UML', level: 65, veredict: 'Me defiendo modelando el mundo en clases y diagramas.' },
+    { name: 'Java', level: 60, veredict: 'Con Libreria Ohana aorendí a la apuradas y no me fue nada mal.' },
+    { name: 'Spring Boot', level: 60, veredict: 'Endpoint, sí señor. Todavía aprendiendo los trucos finos.' },
+    { name: 'Python', level: 45, veredict: 'La entiendo, la leo, pero todavía no es mi lenguaje de cabecera.' },
+    { name: 'Astro', level: 20, veredict: 'Recién arrancando... literal, ¡esta misma revista es la prueba!' },
+];
+---
+
+<Layout title="Herramientas">
+    <main class="page tools-page">
+        <div class="page-content">
+            <p class="eyebrow eyebrow--light">Probamos</p>
+            <h1 class="headline section-title">Herramientas</h1>
+            
+            <div class="tools-list">
+                {tools.map((t) => (
+                    <div class="tools-row">
+                        <div class="tool-head">
+                            <span class="tool-name">{t.name}</span>
+                            <span class="tool-level">{t.level}%</span>
+                        </div>
+                        <div class="tool-bar">
+                            <div class="tool-bar-fill" style={`width: ${t.level}%`}></div>
+                        </div>
+                        <p class="tool-veredict">{t.veredict}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </main>
+
+    <PageNav prevHref='/proyectos' prevLabel='Proyectos' nextHref='/test' nextLabel='Test' />
+</Layout>
+
+<style>
+    .tools-page { background: var(--navy); color: var(--paper); }
+    .eyebrow--light { color: var(--turquoise); }
+    .selection--title {
+        color: var(--yellow);
+        font-size: clamp(2.5rem, 7vw, 4rem);
+        margin: 0.5rem 0 2.5rem;
+    }
+
+    .tools-list{ display: flex; flex-direction: column; gap: 1.75rem; }
+    .tool-row { border-bottom: 1px solid rgba(253, 246, 238, 0.15); padding-bottom: 1.5rem; }
+    .tool-head { 
+        display: flex;
+        justify-content: space-between;
+        font-family: var(--font-mono);
+        margin-bottom: 0.5rem;
+    }
+    .tool-name { font-weight: 700; font-size: 1.05rem; }
+    .tool-level { color: var(--turquoise); }
+    .tool-bar {
+        height: 10px;
+        background: rgba(253, 246, 238, 0.1);
+        border-radius: 999px;
+        overflow: hidden;
+        margin-bottom: 0.rem;
+    }
+    .tool-bar-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--turquoise), var(--violet));
+        border-radius: 999px;
+    }
+    .tool-veredict { font-size: 0.95rem; opacity: 0.85;}
+</style>
