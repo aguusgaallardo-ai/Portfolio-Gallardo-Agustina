@@ -1,77 +1,43 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import PageNav from '../components/PageNav.astro';
 ---
-<Layout title="¿Hablamos?">
-  <main class="page">
-    <div class="page-content contact">
-      <p class="eyebrow">Contacto</p>
-      <h1 class="headline section-title">¿Hablamos?</h1>
+<Layout title="¿Hablamos?" pageBg="var(--paper)" index={9} total={11} prevHref="/test" nextHref="/cv">
+  <div class="page-content contact">
+    <p class="eyebrow">Contacto</p>
+    <h1 class="headline section-title">¿Hablamos?</h1>
 
-      <a class="card contact-primary" href="mailto:aguusgaallardo@gmail.com">
-        <span class="contact-icon">📧</span>
-        <span>
-          <strong>aguusgaallardo@gmail.com</strong>
-          <small>Acá respondo más rápido — no te quedes esperando por otro lado</small>
-        </span>
+    <a class="card contact-primary" href="mailto:aguusgaallardo@gmail.com">
+      <span class="contact-icon">📧</span>
+      <span>
+        <strong>aguusgaallardo@gmail.com</strong>
+        <small>Acá respondo más rápido</small>
+      </span>
+    </a>
+
+    <div class="contact-secondary">
+      <a class="card contact-chip" href="https://github.com/aguusgaallardo-ai" target="_blank" rel="noopener">
+        <span class="contact-icon">💻</span>
+        <span><strong>GitHub</strong><small>aguusgaallardo-ai</small></span>
       </a>
-
-      <div class="contact-secondary">
-        <a class="card contact-chip" href="https://github.com/aguusgaallardo-ai" target="_blank" rel="noopener">
-          <span class="contact-icon">💻</span>
-          <span>
-            <strong>GitHub</strong>
-            <small>aguusgaallardo-ai</small>
-          </span>
-        </a>
-
-        <a class="card contact-chip" href="https://www.linkedin.com/in/agustina-gallardo" target="_blank" rel="noopener">
-          <span class="contact-icon">💼</span>
-          <span>
-            <strong>LinkedIn</strong>
-            <small>agustina-gallardo</small>
-          </span>
-        </a>
-      </div>
+      <a class="card contact-chip" href="https://www.linkedin.com/in/agustina-gallardo" target="_blank" rel="noopener">
+        <span class="contact-icon">💼</span>
+        <span><strong>LinkedIn</strong><small>agustina-gallardo</small></span>
+      </a>
     </div>
-  </main>
-
-  <PageNav prevHref="/test" prevLabel="Test" nextHref="/cv" nextLabel="CV" />
+  </div>
 </Layout>
 
 <style>
-  .section-title {
-    color: var(--pink);
-    font-size: clamp(2.5rem, 7vw, 4rem);
-    margin: 0.5rem 0 2.5rem;
-    text-shadow: 3px 3px 0 var(--navy);
-  }
+  .contact { justify-content: center; gap: 5%; }
+  .section-title { color: var(--pink); font-size: 7cqw; margin-bottom: 2%; text-shadow: 2px 2px 0 var(--navy); }
 
-  .contact-primary {
-    display: flex;
-    align-items: center;
-    gap: 1.25rem;
-    text-decoration: none;
-    color: var(--navy);
-    margin-bottom: 1.5rem;
-    background: var(--yellow);
-  }
-  .contact-primary strong { display: block; font-size: 1.2rem; }
-  .contact-primary small { display: block; opacity: 0.75; }
-  .contact-icon { font-size: 2rem; }
+  .contact-primary { display: flex; align-items: center; gap: 1rem; background: var(--yellow); }
+  .contact-primary strong { display: block; font-size: 1rem; }
+  .contact-primary small { display: block; opacity: 0.75; font-size: 0.75rem; }
+  .contact-icon { font-size: 1.6rem; }
 
-  .contact-secondary { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
-  .contact-chip {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    text-decoration: none;
-    color: var(--navy);
-  }
-  .contact-chip strong { display: block; }
-  .contact-chip small { opacity: 0.7; }
-
-  @media (max-width: 600px) {
-    .contact-secondary { grid-template-columns: 1fr; }
-  }
+  .contact-secondary { display: grid; grid-template-columns: 1fr 1fr; gap: 4%; }
+  .contact-chip { display: flex; align-items: center; gap: 0.6rem; }
+  .contact-chip strong { display: block; font-size: 0.85rem; }
+  .contact-chip small { opacity: 0.7; font-size: 0.7rem; }
 </style>
