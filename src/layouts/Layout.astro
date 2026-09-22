@@ -1,25 +1,45 @@
 ---
 import '../styles/global.css';
+import PageNav from '../components/PageNav.astro';
 
 interface Props {
-	title: string;
-	description?: string;
+  title: string;
+  description?: string;
+  pageBg?: string;
+  pageColor?: string;
+  index: number;
+  total: number;
+  prevHref?: string;
+  nextHref?: string;
 }
 
-const { title, description = 'Portfolio de Agustina Gallardo - Desarrolladora de Software.' } = Astro.props;
+const {
+  title,
+  description = 'Portfolio de Agustina Gallardo — Desarrolladora de Software.',
+  pageBg = 'var(--paper)',
+  pageColor = 'var(--navy)',
+  index,
+  total,
+  prevHref,
+  nextHref,
+} = Astro.props;
 ---
-
 <!doctype html>
 <html lang="es">
-	<head>
-		<meta charset="UTF-8"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="description" content={description} />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title} · Port fo lio</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} · Port fo lio</title>
+  </head>
+  <body>
+    <div class="magazine-stage">
+      <main class="magazine-page" style={`--page-bg:${pageBg}; --page-color:${pageColor};`}>
+        <slot />
+      </main>
+      <PageNav index={index} total={total} prevHref={prevHref} nextHref={nextHref} />
+    </div>
+  </body>
 </html>
