@@ -1,139 +1,19 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import StarryBackground from '../components/StarryBackground.astro';
-import Starburst from '../components/Starburst.astro';
-import Barcode from '../components/Barcode.astro';
 ---
 <Layout title="Tapa" pageBg="var(--pink)" pageColor="var(--navy)" label="1" nextHref="/carta-editora">
-  <StarryBackground bg="var(--pink)" />
-
-  <div class="stickers" aria-hidden="true">
-    <span class="sticker sticker--cd">💿</span>
-    <span class="sticker sticker--cool">¡Cool!</span>
-    <span class="sticker sticker--heart">😍</span>
-    <span class="sticker sticker--note">🎵</span>
-  </div>
-
-  <div class="page-content cover">
-    <div class="cover-top">
-      <div class="wordmark">
-        <span>Port</span>
-        <span>fo</span>
-        <span>lio</span>
-      </div>
-      <div class="edition-badge">★<br />2026</div>
-    </div>
-
-    <p class="subtitle">Código Propio</p>
-
-    <div class="coverlines">
-      <p class="coverline coverline--turq">¡OMG! TEST</p>
-      <p class="coverline coverline--navy">¿Qué</p>
-      <p class="coverline coverline--navy">LENGUAJE de</p>
-      <p class="coverline coverline--green">PROGRAMACIÓN</p>
-      <p class="coverline coverline--navy">sos?</p>
-    </div>
-
-    <p class="tag chip">Edición especial • Agustina Gallardo</p>
-
-    <div class="cover-bottom">
-      <div class="burst-wrap">
-        <Starburst color="var(--yellow)" rotate="-10deg">
-          <p class="burst-text">¡Encontrá proyectos, herramientas y conocimiento!</p>
-        </Starburst>
-      </div>
-
-      <div class="cover-headline">
-        <h1 class="headline">Desarrolladora<br />de Software</h1>
-        <p class="tagline">De aprender a programar a crear mi propio camino.</p>
-      </div>
-    </div>
-
-    <div class="barcode-wrap">
-      <Barcode width="22cqw" />
-    </div>
-  </div>
-
   <img
-    class="cover-illustration"
-    src="/images/perfil/foto-brazos-cruzado.png"
-    alt="Ilustración de Agustina Gallardo con los brazos cruzados"
+    class="cover-image"
+    src="/images/tapa/tapa.webp"
+    alt="Tapa de la revista: Port fo lio, Código Propio — Agustina Gallardo, Desarrolladora de Software"
   />
 </Layout>
 
 <style>
-  .cover { justify-content: space-between; padding-bottom: 1%; }
-
-  .stickers { position: absolute; inset: 0; z-index: 1; }
-  .sticker { position: absolute; }
-  .sticker--cd { top: 3%; left: 40%; font-size: 2.3rem; transform: rotate(-8deg); }
-  .sticker--cool {
-    top: 13%; left: 45%;
-    font-family: var(--font-headline);
-    font-size: 1rem;
-    background: #fff;
-    color: var(--navy);
-    padding: 0.2em 0.5em;
-    border-radius: 0.4em;
-    transform: rotate(-8deg);
-  }
-  .sticker--heart { font-size: 1.9rem; top: 46%; left: 42%; }
-  .sticker--note { font-size: 1.7rem; top: 63%; left: 4%; transform: rotate(10deg); }
-
-  .cover-top { display: flex; justify-content: space-between; align-items: flex-start; }
-
-  .wordmark {
-    font-family: var(--font-wordmark);
-    font-weight: 700;
-    line-height: 0.82;
-    font-size: 11cqw;
-  }
-  .wordmark span { display: block; }
-
-  .edition-badge {
-    font-family: var(--font-mono);
-    font-weight: 700;
-    text-align: center;
-    color: var(--violet);
-    font-size: 2.4cqw;
-    line-height: 1.3;
-  }
-
-  .subtitle { font-weight: 700; font-size: 3.6cqw; margin-top: 1%; }
-
-  .coverlines { max-width: 72%; margin-top: 2%; }
-  .coverline {
-    font-family: var(--font-headline);
-    line-height: 1.05;
-    font-size: 4.4cqw;
-    text-shadow: 1.5px 1.5px 0 var(--navy);
-  }
-  .coverline--turq { color: var(--turquoise); }
-  .coverline--green { color: #7ED957; }
-  .coverline--navy { color: var(--navy); text-shadow: none; -webkit-text-stroke: 0.5px #fff; }
-
-  .tag { margin-top: 3%; align-self: flex-start; background: var(--yellow); font-size: 2.6cqw; max-width: 50%; }
-
-  .cover-bottom { display: flex; align-items: flex-end; gap: 2cqw; max-width: 50%; margin-top: 2%; }
-  .burst-wrap { width: 26cqw; flex-shrink: 0; }
-  .burst-text { font-family: var(--font-headline); font-size: 2.3cqw; line-height: 1.05; }
-
-  .cover-headline .headline {
-    color: #fff;
-    font-size: 4.6cqw;
-    overflow-wrap: break-word;
-    text-shadow: 2px 2px 0 var(--navy);
-  }
-  .tagline { margin-top: 0.6em; font-style: italic; color: #fff; font-size: 2.3cqw; max-width: 20ch; }
-
-  .barcode-wrap { margin-top: 2%; max-width: 44%; }
-
-  .cover-illustration {
-    position: absolute;
-    right: -1%;
-    bottom: 0;
-    width: 46cqw;
-    z-index: 3;
-    pointer-events: none;
+  .cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 </style>
