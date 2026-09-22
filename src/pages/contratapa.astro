@@ -4,7 +4,7 @@ import StarryBackground from '../components/StarryBackground.astro';
 import Starburst from '../components/Starburst.astro';
 import Barcode from '../components/Barcode.astro';
 ---
-<Layout title="Contratapa" pageBg="var(--pink)" pageColor="var(--navy)" index={11} total={11} prevHref="/cv" nextHref="/">
+<Layout title="Contratapa" pageBg="var(--pink)" pageColor="var(--navy)" label="12" prevHref="/contacto" nextHref="/">
   <StarryBackground bg="var(--pink)" />
 
   <div class="page-content back-cover">
@@ -19,7 +19,7 @@ import Barcode from '../components/Barcode.astro';
     </div>
 
     <div class="barcode-wrap">
-      <Barcode width="34cqw" />
+      <Barcode width="22cqw" />
     </div>
   </div>
 </Layout>
@@ -27,14 +27,7 @@ import Barcode from '../components/Barcode.astro';
 <style>
   .back-cover { align-items: center; justify-content: center; }
   .burst-center { width: 60%; }
-  .wordmark {
-    font-family: var(--font-wordmark);
-    font-weight: 700;
-    line-height: 0.85;
-    font-size: 8cqw;
-    color: var(--navy);
-    text-align: center;
-  }
+  .wordmark { font-family: var(--font-wordmark); font-weight: 700; line-height: 0.85; font-size: 8cqw; color: var(--navy); text-align: center; }
   .wordmark span { display: block; }
   .barcode-wrap { position: absolute; left: 6%; bottom: 6%; }
 </style>
