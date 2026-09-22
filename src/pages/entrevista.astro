@@ -1,51 +1,85 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import SpreadLayout from '../layouts/SpreadLayout.astro';
 
-const qa = [
-  {
-    q: '¿Cómo te describirías?',
-    a: 'Persistente, determinada e inquieta. Una mezcla de curiosidad, sensibilidad y creatividad, con una cabeza que no para hasta encontrarle la vuelta a todo.',
-  },
-  {
-    q: '¿Cómo es tu día a día?',
-    a: 'Distribuyo bien mi tiempo para hacer todo sin volverme loca en el camino: por la mañana trabajo en atención al público —ahí aprendí muchísimo a manejar la paciencia y la confianza en mí misma— y por la tarde-noche curso.',
-  },
-  {
-    q: '¿Cómo arrancaste con la programación?',
-    a: 'Hice un curso de Testing QA en 2022 (del cual me recibí, así que técnicamente soy tester QA) y ahí fue donde se despertó la curiosidad: quería entender cómo funcionaban las páginas por dentro. Eso, y el plan de estudios de la Tecnicatura, terminó de convencerme.',
-  },
+const qaLeft = [
+  { q: '¿Cómo te describirías?', a: 'Persistente, determinada e inquieta. Una mezcla de curiosidad, sensibilidad y creatividad, con una cabeza que ni para hasta encontrarle la vuelta a todo.' },
+  { q: '¿Cómo es tu día a día?', a: 'Por la mañana trabajo en atención al público —ahí aprendí a manejar la paciencia y la confianza en mí misma— y por la tarde-noche curso.' },
+  { q: '¿Cómo arrancaste con la programación?', a: 'Hice un curso de Testing QA en 2022 y ahí se despertó la curiosidad: quería entender cómo funcionaban las páginas por dentro. Eso, y el plan de estudios de la Tecnicatura, terminaron de convencerme.' },
 ];
 ---
-<Layout title="Entrevista" pageBg="var(--paper)" index={4} total={11} prevHref="/perfil" nextHref="/entrevista-2">
-  <div class="page-content interview">
-    <p class="eyebrow">Entrevista</p>
-    <p class="kicker">"Una persona que siente mucho, pregunta aún más y se rinde poco."</p>
+<SpreadLayout title="Entrevista" label="4–5" prevHref="/carta-editora" nextHref="/proyectos">
+  <Fragment slot="left">
+    <div class="page-content interview">
+      <p class="eyebrow">Entrevista</p>
+      <p class="kicker">"Una persona que siente mucho, pregunta aún más y se rinde poco."</p>
 
-    <div class="qa-list">
-      {qa.map((item) => (
-        <div class="qa-item">
-          <h3 class="qa-question">{item.q}</h3>
-          <p class="qa-answer">{item.a}</p>
-        </div>
-      ))}
+      <div class="qa-list">
+        {qaLeft.map((item) => (
+          <div class="qa-item">
+            <h3 class="qa-question">{item.q}</h3>
+            <p class="qa-answer">{item.a}</p>
+          </div>
+        ))}
+      </div>
     </div>
-  </div>
-</Layout>
+  </Fragment>
+
+  <Fragment slot="right">
+    <div class="page-content interview-2">
+      <div class="qa-item">
+        <h3 class="qa-question">¿El proyecto que más te costó?</h3>
+        <p class="qa-answer">
+          Sin dudas, "Librería Ohana". Lo armamos en 1 o 2 meses, programando en Java y
+          aprendiendo Spring Boot sobre la marcha. Varias noches sin dormir. De ahí aprendí que
+          tengo paciencia y trabajo mejor bajo presión.
+        </p>
+      </div>
+
+      <div class="qa-item">
+        <h3 class="qa-question">¿Qué te gusta más y qué menos de programar?</h3>
+        <p class="qa-answer">
+          Lo que más: desconectarme del mundo por horas metida en algo hasta dejarlo funcionando.
+          Lo que menos: trabarme mucho tiempo en un bug y no encontrarle la vuelta.
+        </p>
+      </div>
+
+      <div class="extras-grid">
+        <div class="card extra-card">
+          <p class="chip">Fuera de la facu</p>
+          <p>Vivero por las mañanas, pádel y gym los findes, mucho asado con amigas.</p>
+        </div>
+        <div class="card extra-card">
+          <p class="chip">Now playing</p>
+          <p>Las Pastillas del Abuelo, Lali, Cruzando el Charco, y a veces Bisbal o Arjona.</p>
+        </div>
+      </div>
+
+      <div class="closing card">
+        <p class="chip">Mirando para adelante</p>
+        <p>
+          "En 5 años me gustaría estar trabajando de esto que estudié. Consejo para quien arranca:
+          paciencia. El camino parece largo, pero con dedicación se puede, siempre se puede."
+        </p>
+      </div>
+    </div>
+  </Fragment>
+</SpreadLayout>
 
 <style>
   .interview { gap: 4%; }
-  .kicker {
-    font-style: italic;
-    font-size: 1.05rem;
-    color: var(--violet);
-    margin: 4% 0 6%;
-  }
-  .qa-list { display: flex; flex-direction: column; gap: 5%; }
-  .qa-question {
-    font-family: var(--font-tag);
-    color: var(--pink);
-    font-size: 1.2rem;
-    margin-bottom: 0.4rem;
-  }
-  .qa-answer { font-size: 0.9rem; line-height: 1.45; }
+  .kicker { font-style: italic; font-size: 1rem; color: var(--violet); margin: 4% 0 6%; }
+  .qa-list { display: flex; flex-direction: column; gap: 6%; }
+  .qa-question { font-family: var(--font-tag); color: var(--pink); font-size: 1.1rem; margin-bottom: 0.35rem; }
+  .qa-answer { font-size: 0.85rem; line-height: 1.4; }
+
+  .interview-2 { gap: 4%; justify-content: space-between; }
+  .interview-2 .qa-question { font-size: 1rem; }
+  .interview-2 .qa-answer { font-size: 0.8rem; line-height: 1.35; }
+
+  .extras-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3%; }
+  .extra-card { display: flex; flex-direction: column; gap: 0.4rem; }
+  .extra-card p:last-child { font-size: 0.75rem; }
+
+  .closing { display: flex; flex-direction: column; gap: 0.4rem; }
+  .closing p:last-child { font-style: italic; font-size: 0.78rem; }
 </style>
