@@ -1,0 +1,53 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageNav from '../components/PageNav.astro';
+---
+
+<Layout title="Carta de la editora">
+    <main class="page">
+        <div class="page-content letter">
+            <p class="eyebrow">Editorial</p>
+            <h1 class="headline letter-title">Carta de<br />la editora</h1>
+
+            <div class="letter-card card">
+                <p> 
+                    Bienvenidos a esta edición especial. Soy Agustina, y actualmente 
+                    estoy cursando el último año de la Tecnicatura de Desarrollo de Software, 
+                    anteriormente me formé como Tester QA. Y en el medio, 
+                    porque no me alcanzaba con estar solamente cursando una carrera, me metí de lleno en un 
+                    curso de Análisis de Datos en Quales -certificado en mano- porque si de algo estoy segura también 
+                    es de que nunca dejo de sumar herramientas nuevas a la mochila.
+                </p>
+                <p>
+                    En estas páginas vas a encontrar quién soy, en qué proyectos anduve metida,
+                    qué herramientas manejo (y cuáles todavía estoy aprendiendo), y si te copa,
+                    hasta un test para descubrir qué lenguaje de programación serías vos. ¡Empecemos!
+                </p>
+
+                <p class="signature">-Agustina Gallardo, Editora.</p>
+            </div>
+        </div>
+    </main>
+
+    <PageNav prevHref="/" prevLabel="Tapa" nextHref="/perfil" nextLabel="Perfil" />
+</Layout>
+
+<style>
+    .letter-title {
+        color: var(--pink);
+        font-size: clamp(2.5rem, 7vw, 4rem);
+        margin: 0.5rem 0 2rem;
+        text-shadow: 3px 3px 0 var(--navy);
+    }
+    .letter-card {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        font-size: 1.1rem;
+    }
+    .signaature {
+        font-family: var(--font-tag);
+        font-size: 1.3rem;
+        color: var(--violet);
+    }
+</style>
