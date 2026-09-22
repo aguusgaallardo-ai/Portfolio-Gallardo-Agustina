@@ -7,8 +7,7 @@ interface Props {
   description?: string;
   pageBg?: string;
   pageColor?: string;
-  index: number;
-  total: number;
+  label: string;
   prevHref?: string;
   nextHref?: string;
 }
@@ -18,8 +17,7 @@ const {
   description = 'Portfolio de Agustina Gallardo — Desarrolladora de Software.',
   pageBg = 'var(--paper)',
   pageColor = 'var(--navy)',
-  index,
-  total,
+  label,
   prevHref,
   nextHref,
 } = Astro.props;
@@ -39,7 +37,7 @@ const {
       <main class="magazine-page" style={`--page-bg:${pageBg}; --page-color:${pageColor};`}>
         <slot />
       </main>
-      <PageNav index={index} total={total} prevHref={prevHref} nextHref={nextHref} />
+      <PageNav label={label} prevHref={prevHref} nextHref={nextHref} />
     </div>
   </body>
 </html>
