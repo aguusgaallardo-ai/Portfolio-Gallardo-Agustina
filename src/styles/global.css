@@ -211,3 +211,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 
 .tag-bellota { font-family: var(--font-tag); font-weight: 700; }
+
+.magazine-page--cover {
+  aspect-ratio: 0.707;
+}
