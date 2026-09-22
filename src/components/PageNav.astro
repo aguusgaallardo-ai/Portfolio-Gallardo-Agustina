@@ -1,0 +1,76 @@
+---
+interface Props {
+    prevHref?: string;
+    prevLabel?: string;
+    nextHref?: string;
+    nextLabel?: string;
+}
+const { prevHref, prevLabel, nextHref, nextLabel } = Astro.props;
+---
+<nav class="page-nav" aria-label="Navegación de la revista">
+    {prevHref ? (
+    <a class="page-nav__link page-nav__link--prev" href={prevHref}>
+        <span class="arrow">←</span>
+        <span>
+            <small>Anterior</small>
+             <strong>{prevLabel}</strong>
+        </span>
+    </a>
+) : <span />}
+
+<a class="page-nav__index" href="/">Índice</a>
+
+{nextHref ? (
+    <a class="page-nav__link page-nav__link--next" href={nextHref}>
+        <span>
+            <small>Siguiente</small>
+            <strong>{nextLabel}</strong>
+        </span>
+        <span class="arrow">→</span>
+    </a>
+) : <span />}
+</nav>
+
+<style>
+    .page-nav {
+        position: relative;
+        z-index: 2;
+        max-width: 880px;
+        margin: 2rem auto 0;
+        padding: 1.25rem 1.5rem 3ren;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        font-family: var(--font-mono);
+    }
+    .page-nav__link {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        text-decoration: none;
+        color: var(--navy);
+        border: 2px solid var(--navy);
+        border-radius: 999px;
+        padding: 0.5rem 1rem;
+        background: #fff;
+        box-shadow: 3px 3px 0 var(--navy);
+        transition: transform 0.15s ease;
+    }
+    .page-nav__link:hover { transform: translate(-2px, -2px); }
+    .page-nav__link--next { text-align: right; }
+    .page-nav__link small { display: block; font-size: 0.6rem; opacity: 0.6; text-transform: uppercase; }
+    .page-nav__link strong { display: block; font-size: 0.85rem; }
+    .arrow { font-size: 1.1rem; }
+    .page-nav__index {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--violet);
+        text-decoration: underline;
+    }
+    @media (max-width: 600px) {
+        .page-nav { flex-wrap: wrap; justify-content: center; }
+        .page-nav__index { order: 3; width: 100%; text-align: center;}
+    }
+</style>
