@@ -1,138 +1,136 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import PageNav from '../components/PageNav.astro';
 
 const questions = [
-  {
-    q: 'Son las 2 AM y tenés un bug que no cede. ¿Qué hacés?',
-    options: [
-      { letter: 'A', text: 'Lo dejo reposar, mañana lo veo con la cabeza fresca' },
-      { letter: 'B', text: 'Abro 15 pestañas de Stack Overflow y pruebo todo lo que encuentro' },
-      { letter: 'C', text: 'Reviso la documentación línea por línea hasta dar con el error exacto' },
-      { letter: 'D', text: 'No me voy a dormir hasta resolverlo, cueste lo que cueste' },
-      { letter: 'E', text: 'Le doy una vuelta creativa, capaz lo resuelvo de una forma que nadie esperaba' },
-      { letter: 'F', text: 'Simplifico todo y voy directo al problema, sin vueltas' },
-    ],
-  },
-  {
-    q: 'Te asignan un proyecto nuevo del que no sabés nada. ¿Cuál es tu primer movimiento?',
-    options: [
-      { letter: 'A', text: 'Empiezo a probar cositas sueltas para entender cómo funciona todo' },
-      { letter: 'B', text: 'Investigo mil herramientas antes de decidir con cuál arrancar' },
-      { letter: 'C', text: 'Armo un plan estructurado antes de escribir la primera línea' },
-      { letter: 'D', text: 'Leo toda la documentación técnica de punta a punta' },
-      { letter: 'E', text: 'Empiezo por la parte que más me copa, después ordeno el resto' },
-      { letter: 'F', text: 'Voy directo a lo esencial, sin rodeos' },
-    ],
-  },
-  {
-    q: 'Te llega una devolución dura en un code review. ¿Cómo reaccionás?',
-    options: [
-      { letter: 'A', text: 'Lo tomo con calma, lo charlo y ajusto lo que haga falta' },
-      { letter: 'B', text: 'Me pongo un poco nerviosa pero lo arreglo todo en tiempo récord' },
-      { letter: 'C', text: 'Reviso cada comentario como una checklist, no dejo nada sin resolver' },
-      { letter: 'D', text: 'Me lo tomo personal (aunque no debería) y reviso hasta el último detalle' },
-      { letter: 'E', text: 'Le doy mi propio enfoque, aunque implique reescribir todo distinto' },
-      { letter: 'F', text: 'Aplico los cambios rápido y sigo, sin darle más vueltas' },
-    ],
-  },
-  {
-    q: 'Se acerca la entrega y todavía falta bastante. ¿Qué actitud tomás?',
-    options: [
-      { letter: 'A', text: 'Organizo prioridades y voy tranqui, paso a paso' },
-      { letter: 'B', text: 'Entro en modo multitarea total, mil cosas a la vez' },
-      { letter: 'C', text: 'Armo un cronograma estricto y lo sigo al pie de la letra' },
-      { letter: 'D', text: 'Me obsesiono con que todo salga perfecto, cueste lo que cueste' },
-      { letter: 'E', text: 'Busco la forma más creativa (no siempre la más ortodoxa) de llegar' },
-      { letter: 'F', text: 'Voy directo a lo mínimo indispensable para que funcione bien' },
-    ],
-  },
-  {
-    q: 'Elegís tu ambiente ideal para programar. ¿Cuál va con vos?',
-    options: [
-      { letter: 'A', text: 'Algo relajado de fondo, sin pensar mucho' },
-      { letter: 'B', text: 'Playlist random, cambia todo el tiempo según el humor' },
-      { letter: 'C', text: 'Silencio total, necesito orden para concentrarme' },
-      { letter: 'D', text: 'Algo intenso, que acompañe la tensión de resolver algo complejo' },
-      { letter: 'E', text: 'Algo distinto, fuera de lo común, que nadie más escucharía' },
-      { letter: 'F', text: 'Lo que sea, no le doy muchas vueltas a esto' },
-    ],
-  },
-  {
-    q: 'Un compañero te pide ayuda con su código. ¿Cómo lo ayudás?',
-    options: [
-      { letter: 'A', text: 'Le explico con calma y ejemplos simples' },
-      { letter: 'B', text: 'Le tiro mil ideas a la vez, algunas más útiles que otras' },
-      { letter: 'C', text: 'Le armo un paso a paso bien ordenado' },
-      { letter: 'D', text: 'Reviso todo con lupa hasta encontrar el detalle que se le pasó' },
-      { letter: 'E', text: 'Le propongo una solución distinta a la que estaba buscando' },
-      { letter: 'F', text: 'Le doy la solución más simple y directa posible' },
-    ],
-  },
+  { q: 'Son las 2 AM y tenés un bug que no cede. ¿Qué hacés?', options: [
+    { letter: 'A', text: 'Lo dejo reposar, mañana lo veo con la cabeza fresca' },
+    { letter: 'B', text: 'Abro 15 pestañas de Stack Overflow y pruebo todo' },
+    { letter: 'C', text: 'Reviso la documentación línea por línea' },
+    { letter: 'D', text: 'No me voy a dormir hasta resolverlo' },
+    { letter: 'E', text: 'Le doy una vuelta creativa, algo que nadie esperaba' },
+    { letter: 'F', text: 'Simplifico todo y voy directo al problema' },
+  ]},
+  { q: 'Te asignan un proyecto nuevo del que no sabés nada. ¿Primer movimiento?', options: [
+    { letter: 'A', text: 'Empiezo a probar cositas sueltas' },
+    { letter: 'B', text: 'Investigo mil herramientas antes de arrancar' },
+    { letter: 'C', text: 'Armo un plan estructurado' },
+    { letter: 'D', text: 'Leo toda la documentación técnica' },
+    { letter: 'E', text: 'Empiezo por la parte que más me copa' },
+    { letter: 'F', text: 'Voy directo a lo esencial' },
+  ]},
+  { q: 'Te llega una devolución dura en un code review. ¿Cómo reaccionás?', options: [
+    { letter: 'A', text: 'Lo tomo con calma, lo charlo y ajusto' },
+    { letter: 'B', text: 'Nerviosa, pero lo arreglo en tiempo récord' },
+    { letter: 'C', text: 'Reviso cada comentario como checklist' },
+    { letter: 'D', text: 'Me lo tomo personal y reviso todo' },
+    { letter: 'E', text: 'Le doy mi propio enfoque, distinto' },
+    { letter: 'F', text: 'Aplico los cambios rápido y sigo' },
+  ]},
+  { q: 'Se acerca la entrega y falta bastante. ¿Qué actitud tomás?', options: [
+    { letter: 'A', text: 'Organizo prioridades y voy tranqui' },
+    { letter: 'B', text: 'Modo multitarea total' },
+    { letter: 'C', text: 'Cronograma estricto, al pie de la letra' },
+    { letter: 'D', text: 'Me obsesiono con que salga perfecto' },
+    { letter: 'E', text: 'Busco la forma más creativa de llegar' },
+    { letter: 'F', text: 'Voy a lo mínimo indispensable' },
+  ]},
+  { q: 'Elegís tu ambiente ideal para programar.', options: [
+    { letter: 'A', text: 'Algo relajado de fondo' },
+    { letter: 'B', text: 'Playlist random según el humor' },
+    { letter: 'C', text: 'Silencio total, necesito orden' },
+    { letter: 'D', text: 'Algo intenso, tensión y foco' },
+    { letter: 'E', text: 'Algo distinto, fuera de lo común' },
+    { letter: 'F', text: 'Lo que sea, no le doy vueltas' },
+  ]},
+  { q: 'Un compañero te pide ayuda con su código.', options: [
+    { letter: 'A', text: 'Explico con calma y ejemplos simples' },
+    { letter: 'B', text: 'Tiro mil ideas a la vez' },
+    { letter: 'C', text: 'Armo un paso a paso ordenado' },
+    { letter: 'D', text: 'Reviso todo con lupa' },
+    { letter: 'E', text: 'Propongo una solución distinta' },
+    { letter: 'F', text: 'Doy la solución más directa' },
+  ]},
 ];
 ---
-<Layout title="Test">
-  <main class="page">
-    <div class="page-content">
-      <p class="eyebrow">¡OMG! Test</p>
-      <h1 class="headline section-title">¿Qué lenguaje<br />de programación sos?</h1>
+<Layout title="Test" pageBg="var(--paper)" index={8} total={11} prevHref="/herramientas" nextHref="/contacto">
+  <div class="page-content quiz-page">
+    <p class="eyebrow">¡OMG! Test</p>
+    <h1 class="headline quiz-title">¿Qué lenguaje sos?</h1>
 
-      <form id="quiz-form" class="quiz">
-        {questions.map((item, i) => (
-          <fieldset class="question card">
-            <legend>{i + 1}. {item.q}</legend>
-            <div class="options">
-              {item.options.map((opt) => (
-                <label class="option">
-                  <input type="radio" name={`q${i + 1}`} value={opt.letter} required={opt.letter === 'A'} />
-                  <span class="option-letter">{opt.letter}</span>
-                  <span>{opt.text}</span>
-                </label>
-              ))}
-            </div>
-          </fieldset>
-        ))}
+    <form id="quiz-form" class="quiz">
+      {questions.map((item, i) => (
+        <fieldset class="question" data-step={i + 1} hidden={i !== 0}>
+          <p class="question-progress">Pregunta {i + 1} / {questions.length}</p>
+          <legend>{item.q}</legend>
+          <div class="options">
+            {item.options.map((opt) => (
+              <label class="option">
+                <input type="radio" name={`q${i + 1}`} value={opt.letter} />
+                <span class="option-letter">{opt.letter}</span>
+                <span>{opt.text}</span>
+              </label>
+            ))}
+          </div>
+          <div class="step-actions">
+            {i > 0 && <button type="button" class="btn btn--ghost" data-action="prev">‹ Anterior</button>}
+            <span class="spacer"></span>
+            {i < questions.length - 1
+              ? <button type="button" class="btn" data-action="next">Siguiente ›</button>
+              : <button type="submit" class="btn">Ver mi resultado</button>}
+          </div>
+        </fieldset>
+      ))}
+    </form>
 
-        <button type="submit" class="btn">Ver mi resultado</button>
-      </form>
-
-      <div id="quiz-result" class="quiz-result" hidden></div>
-    </div>
-  </main>
-
-  <PageNav prevHref="/herramientas" prevLabel="Herramientas" nextHref="/contacto" nextLabel="¿Hablamos?" />
+    <div id="quiz-result" class="quiz-result" hidden></div>
+  </div>
 </Layout>
 
 <script>
   const letterMap: Record<string, string> = { A: 'Python', B: 'JavaScript', C: 'Java', D: 'C++', E: 'Ruby', F: 'Go' };
 
   const results: Record<string, { emoji: string; desc: string }> = {
-    Python: { emoji: '🐍', desc: 'Sos calma en estado puro. Simple, versátil y te llevás bien con todo el mundo. No necesitás hacer ruido para resolver las cosas.' },
-    JavaScript: { emoji: '⚡', desc: 'Sos caos organizado. Estás en todos lados a la vez, cambiás de idea seguido, pero de alguna manera siempre termina funcionando.' },
-    Java: { emoji: '☕', desc: 'Sos estructura y disciplina. Necesitás orden para rendir, y una vez que tenés el plan, no hay quien te pare.' },
-    'C++': { emoji: '⚙️', desc: 'Sos perfeccionismo absoluto. No descansás hasta que todo esté exactamente como tiene que estar, sin atajos.' },
-    Ruby: { emoji: '💎', desc: 'Sos creatividad pura. Preferís tu propio camino antes que el obvio, y eso te sale bien más seguido de lo que pensás.' },
-    Go: { emoji: '🎯', desc: 'Sos practicidad sin vueltas. Vas directo a lo que funciona, sin gastar energía de más en nada.' },
+    Python: { emoji: '🐍', desc: 'Sos calma en estado puro. Simple, versátil, sin hacer ruido.' },
+    JavaScript: { emoji: '⚡', desc: 'Sos caos organizado. Estás en todos lados, pero siempre funciona.' },
+    Java: { emoji: '☕', desc: 'Sos estructura y disciplina. Con el plan armado, no hay quien te pare.' },
+    'C++': { emoji: '⚙️', desc: 'Sos perfeccionismo absoluto. Sin atajos, hasta que esté exacto.' },
+    Ruby: { emoji: '💎', desc: 'Sos creatividad pura. Tu propio camino, y te sale bien.' },
+    Go: { emoji: '🎯', desc: 'Sos practicidad sin vueltas. Directo a lo que funciona.' },
   };
 
   const form = document.getElementById('quiz-form') as HTMLFormElement | null;
   const resultEl = document.getElementById('quiz-result');
+  const steps = Array.from(document.querySelectorAll<HTMLFieldSetElement>('.question'));
+
+  function showStep(n: number) {
+    steps.forEach((step) => { step.hidden = Number(step.dataset.step) !== n; });
+  }
+
+  form?.addEventListener('click', (e) => {
+    const target = (e.target as HTMLElement).closest<HTMLElement>('[data-action]');
+    if (!target) return;
+    const action = target.dataset.action;
+    const currentStep = steps.find((s) => !s.hidden);
+    if (!currentStep) return;
+    const current = Number(currentStep.dataset.step);
+
+    if (action === 'next') {
+      if (!currentStep.querySelector('input:checked')) return;
+      showStep(current + 1);
+    } else if (action === 'prev') {
+      showStep(current - 1);
+    }
+  });
 
   form?.addEventListener('submit', (e) => {
     e.preventDefault();
+    if (!form) return;
     const data = new FormData(form);
     const tally: Record<string, number> = {};
 
-    for (let i = 1; i <= 6; i++) {
+    for (let i = 1; i <= steps.length; i++) {
       const letter = data.get(`q${i}`);
-      if (!letter || typeof letter !== 'string') {
-        if (resultEl) {
-          resultEl.hidden = false;
-          resultEl.innerHTML = '<p class="quiz-warning">Respondé todas las preguntas para ver tu resultado.</p>';
-          resultEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-        return;
-      }
+      if (!letter || typeof letter !== 'string') return;
       const lang = letterMap[letter];
       tally[lang] = (tally[lang] || 0) + 1;
     }
@@ -140,6 +138,7 @@ const questions = [
     const max = Math.max(...Object.values(tally));
     const winners = Object.keys(tally).filter((lang) => tally[lang] === max);
 
+    form.hidden = true;
     if (resultEl) {
       resultEl.hidden = false;
       resultEl.innerHTML = winners
@@ -148,56 +147,44 @@ const questions = [
           return `<div class="result-card"><span class="result-emoji">${r.emoji}</span><h3>${lang}</h3><p>${r.desc}</p></div>`;
         })
         .join('');
-      resultEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   });
 </script>
 
 <style>
-  .section-title {
-    color: var(--pink);
-    font-size: clamp(2.2rem, 6vw, 3.2rem);
-    margin: 0.5rem 0 2.5rem;
-    text-shadow: 3px 3px 0 var(--navy);
-  }
+  .quiz-page { gap: 2%; }
+  .quiz-title { color: var(--pink); font-size: 6.5cqw; margin: 1% 0 3%; text-shadow: 2px 2px 0 var(--navy); }
 
-  .quiz { display: flex; flex-direction: column; gap: 1.75rem; }
-  .question { border: none; }
+  .quiz { flex: 1; display: flex; flex-direction: column; }
+  .question { border: none; padding: 0; margin: 0; display: flex; flex-direction: column; flex: 1; }
+  .question-progress { font-family: var(--font-mono); font-size: 0.68rem; color: var(--violet); margin-bottom: 0.3rem; }
   .question legend {
+    padding: 0;
     font-family: var(--font-tag);
-    font-size: 1.2rem;
-    color: var(--violet);
-    padding: 0 0.5rem;
+    font-size: 1.05rem;
+    color: var(--navy);
+    margin-bottom: 3%;
   }
-  .options { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 0.75rem; }
+  .options { display: flex; flex-direction: column; gap: 2%; flex: 1; }
   .option {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.6rem;
     border: 2px solid var(--navy);
-    border-radius: 12px;
-    padding: 0.6rem 0.9rem;
+    border-radius: 10px;
+    padding: 0.5rem 0.75rem;
     cursor: pointer;
-    font-size: 0.95rem;
+    font-size: 0.78rem;
   }
   .option:has(input:checked) { background: var(--yellow); }
-  .option-letter {
-    font-family: var(--font-mono);
-    font-weight: 700;
-    color: var(--pink);
-    flex-shrink: 0;
-  }
-  .quiz button { margin-top: 0.5rem; align-self: center; }
+  .option-letter { font-family: var(--font-mono); font-weight: 700; color: var(--pink); flex-shrink: 0; }
 
-  .quiz-result { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.25rem; }
-  .result-card {
-    background: var(--navy);
-    color: var(--paper);
-    border-radius: 18px;
-    padding: 2rem;
-    text-align: center;
-  }
-  .result-emoji { font-size: 3rem; }
-  .result-card h3 { font-family: var(--font-headline); color: var(--yellow); font-size: 2rem; margin: 0.5rem 0; }
-  .quiz-warning { color: var(--pink); font-weight: 700; text-align: center; }
+  .step-actions { display: flex; align-items: center; margin-top: 4%; }
+  .spacer { flex: 1; }
+
+  .quiz-result { display: flex; flex-direction: column; justify-content: center; flex: 1; gap: 1rem; }
+  .result-card { background: var(--navy); color: var(--paper); border-radius: 14px; padding: 8%; text-align: center; }
+  .result-emoji { font-size: 2.5rem; }
+  .result-card h3 { font-family: var(--font-headline); color: var(--yellow); font-size: 1.6rem; margin: 0.4rem 0; }
+  .result-card p { font-size: 0.85rem; }
 </style>
