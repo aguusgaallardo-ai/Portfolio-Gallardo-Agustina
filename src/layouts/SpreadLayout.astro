@@ -1,0 +1,52 @@
+---
+import '../styles/global.css';
+import PageNav from '../components/PageNav.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  leftBg?: string;
+  leftColor?: string;
+  rightBg?: string;
+  rightColor?: string;
+  label: string;
+  prevHref?: string;
+  nextHref?: string;
+}
+
+const {
+  title,
+  description = 'Portfolio de Agustina Gallardo — Desarrolladora de Software.',
+  leftBg = 'var(--paper)',
+  leftColor = 'var(--navy)',
+  rightBg = 'var(--paper)',
+  rightColor = 'var(--navy)',
+  label,
+  prevHref,
+  nextHref,
+} = Astro.props;
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} · Port fo lio</title>
+  </head>
+  <body>
+    <div class="magazine-stage">
+      <div class="spread">
+        <main class="magazine-page page--left" style={`--page-bg:${leftBg}; --page-color:${leftColor};`}>
+          <slot name="left" />
+        </main>
+        <main class="magazine-page page--right" style={`--page-bg:${rightBg}; --page-color:${rightColor};`}>
+          <slot name="right" />
+        </main>
+      </div>
+      <PageNav label={label} prevHref={prevHref} nextHref={nextHref} />
+    </div>
+  </body>
+</html>
