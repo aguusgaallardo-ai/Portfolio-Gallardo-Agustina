@@ -3,7 +3,7 @@ interface Props {
   number?: string;
   width?: string;
 }
-const { number = '+54 2474 403270', width = '190px' } = Astro.props;
+const { number = '+54 2474 403270', width = '150px' } = Astro.props;
 
 const widths = [2,1,3,1,2,2,1,3,2,1,1,3,2,1,2,3,1,2,1,3,2,1,3,1,2,2,1,3,2,1,1,2,3,1,2,1,2,3,1,2];
 let cursor = 0;
@@ -25,16 +25,16 @@ const totalWidth = cursor;
   .barcode {
     background: #fff;
     border: 2px solid var(--navy);
-    padding: 0.4rem 0.6rem 0.3rem;
+    padding: 0.3rem 0.4rem 0.25rem;
     display: inline-flex;
     flex-direction: column;
-    gap: 0.2rem;
+    gap: 0.15rem;
   }
-  .barcode-svg { width: 100%; height: 32px; display: block; }
+  .barcode-svg { width: 100%; height: 22px; display: block; }
   .barcode-number {
     font-family: var(--font-mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.08em;
+    font-size: 0.5rem;
+    letter-spacing: 0.32em;
     text-align: center;
     white-space: nowrap;
   }
