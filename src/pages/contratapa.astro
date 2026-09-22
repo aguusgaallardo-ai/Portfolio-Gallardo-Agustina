@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StarryBackground from '../components/StarryBackground.astro';
+import Starburst from '../components/Starburst.astro';
+import Barcode from '../components/Barcode.astro';
+import PageNav from '../components/PageNav.astro';
+---
+<Layout title="Contratapa">
+  <main class="page back-cover">
+    <StarryBackground bg="var(--pink)" />
+
+    <div class="back-cover-content">
+      <div class="burst-center">
+        <Starburst color="var(--lime)" rotate="6deg">
+          <div class="wordmark">
+            <span>Port</span>
+            <span>fo</span>
+            <span>lio</span>
+          </div>
+        </Starburst>
+      </div>
+
+      <div class="barcode-wrap">
+        <Barcode />
+      </div>
+    </div>
+  </main>
+
+  <PageNav prevHref="/cv" prevLabel="CV" nextHref="/" nextLabel="Volver a la tapa" />
+</Layout>
+
+<style>
+  .back-cover-content {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+
+  .burst-center { width: min(70%, 420px); }
+
+  .wordmark {
+    font-family: var(--font-wordmark);
+    font-weight: 700;
+    line-height: 0.85;
+    font-size: clamp(2rem, 6vw, 3rem);
+    color: var(--navy);
+    text-align: center;
+  }
+  .wordmark span { display: block; }
+
+  .barcode-wrap {
+    position: absolute;
+    left: 2rem;
+    bottom: 2rem;
+  }
+</style>
