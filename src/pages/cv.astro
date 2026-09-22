@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageNav from '../components/PageNav.astro';
+---
+<Layout title="CV">
+  <main class="page cv-page">
+    <div class="page-content cv-content">
+      <p class="eyebrow eyebrow--light">Póster central</p>
+
+      <div class="cv-layout">
+        <img
+          class="cv-photo"
+          src="/images/perfil/foto-presentacion.png"
+          alt="Foto de Agustina Gallardo"
+        />
+
+        <div class="cv-text">
+          <h1 class="headline">Agustina<br />Gallardo</h1>
+          <p class="cv-tagline">¿Querés saber más? Llevate el papel completo.</p>
+          <a class="btn" href="/public/cv/AgustinaGallardo-CV" download>Descargá mi CV</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <PageNav prevHref="/contacto" prevLabel="¿Hablamos?" nextHref="/contratapa" nextLabel="Contratapa" />
+</Layout>
+
+<style>
+  .cv-page { background: var(--navy); color: var(--paper); }
+  .eyebrow--light { color: var(--turquoise); }
+
+  .cv-layout {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+  .cv-photo {
+    width: 40%;
+    border-radius: 24px;
+    border: 4px solid var(--yellow);
+  }
+  .cv-text .headline {
+    color: var(--yellow);
+    font-size: clamp(2.5rem, 6vw, 3.8rem);
+  }
+  .cv-tagline {
+    margin: 1.5rem 0 2rem;
+    font-size: 1.2rem;
+    max-width: 30ch;
+  }
+
+  @media (max-width: 700px) {
+    .cv-layout { flex-direction: column; text-align: center; }
+    .cv-photo { width: 70%; }
+    .cv-tagline { margin-left: auto; margin-right: auto; }
+  }
+</style>
