@@ -1,248 +1,72 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import PageNav from '../components/PageNav.astro';
-
-const qa = [
-    {
-        q: '¿Cómo te describirías?',
-        a: 'Persistente, determinada e inquieta. Una mezcla de curiosidad, sensibilidad y creatividad, con una cabeza que ni para hasta encontrarle la vuelta a todo.',
-    },
-    {
-        q:'¿Cómo es tu día a día?',
-        a:'Distribuyo bien mi tiempo para hacer todo sin volverme loca en el camino: por la mañana trabajo en atención al público -trabajo en donde aprendí a desarrollar la paciencia y la confianza en mí misma - y por la tarde/noche curso.',
-    },
-    {
-        q:'¿Cómo arrancaste con la programación?',
-        a:'Hice un curso de Testing QA en 2022(del cual me recibí, así que tecnicamente soy tester QA) y ahí fue donde se despertó esta curiosidad: quería entender cómo funcionaban las páginas por dentrom en vez de ser la que testeaba todo el tiempo si andaban o no. Eso y el plan de estudios de la Tecnicatura -con materias de desarrollo bien concretas-, terminó de convencerme.',
-    },
-    {
-        q:'¿Cuál fue el proyecto que más te costó?',
-        a:'Sin dudas. "Libreria Ohana". Fue una propuesta del profesor junto con el instituto para la Noche de los Institutos, donde teníamos que mostrar un programa hecho por nosotros en la carrera. Lo armamos en 1 o 2 meses, programando en un lenguaje del que no teniamos mucha cancha-Java- y aprendiendo Spring Boot sobre la marcha: desarrollar endpoints, usar Postman, armar todo el frondtend. Varias noches sin dormir, muchos errores encontrados (y otros que ní sabíamos que teníamos). De ahí aprendí que tengo más paciencia de la que creía y que definitivament trabajor mejor bajo presión jajaj. Fue grupal, pero cada una tenía su parte.',
-    },
-    {
-        q:'¿Qué es lo que más te gusta de programar?¿Y lo menos?',
-        a:'Lo que más me gutsa es puedo desconectarme de todo por 3 o 4 horas y meterme de lleno en algo hasta dejarlo funcionando (o pulir detalles que solo a mí me molestan). Lo que menos: cuando me trabo mucho tiempo en un error y no puedo encontrarle la vuelta.',
-    },
-];
 ---
-<Layout title="Perfil">
-    <main class="page">
-    <div class="page-content profile-opener">
-      <svg class="doodle doodle--shooting-star" viewBox="0 0 200 80" aria-hidden="true">
-        <path d="M10 60 L20 20 L30 60 L20 45 Z" fill="var(--pink)" />
-        <path d="M35 30 C 80 5, 130 5, 180 20" stroke="var(--pink)" stroke-width="3" fill="none" stroke-linecap="round" />
-      </svg>
+<Layout title="Perfil" pageBg="var(--paper)" index={3} total={11} prevHref="/carta-editora" nextHref="/entrevista">
+  <div class="page-content profile-opener">
+    <svg class="doodle doodle--star" viewBox="0 0 200 80" aria-hidden="true">
+      <path d="M10 60 L20 20 L30 60 L20 45 Z" fill="var(--pink)" />
+      <path d="M35 30 C 80 5, 130 5, 180 20" stroke="var(--pink)" stroke-width="3" fill="none" stroke-linecap="round" />
+    </svg>
 
-      <h1 class="headline profile-title">¡Holaaa!<br />Me presento soy Agus</h1>
+    <h1 class="headline profile-title">¡Holaaa!<br />Me presento soy Agus</h1>
 
-      <div class="polaroid-wrap">
-        <div class="polaroid">
-          <img src="/images/perfil/foto-presentacion.png" alt="Foto de Agustina Gallardo" />
-          <p class="polaroid-caption headline">Desarrolladora<br />de Software</p>
-        </div>
-
-        <img
-          class="pointing-illustration"
-          src="/images/perfil/ilustracion-senalando.png"
-          alt="Ilustración de Agustina señalando hacia arriba"
-        />
-
-        <svg class="doodle doodle--arrow" viewBox="0 0 100 100" aria-hidden="true">
-          <path d="M10 10 C 60 10, 90 30, 60 70" stroke="var(--pink)" stroke-width="3" fill="none" stroke-linecap="round" />
-          <path d="M45 62 L60 70 L58 52" stroke="var(--pink)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
+    <div class="polaroid-wrap">
+      <div class="polaroid">
+        <img src="/public/images/perfil/foto-presentacion.png" alt="Foto de Agustina Gallardo" />
+        <p class="polaroid-caption headline">Desarrolladora<br />de Software</p>
       </div>
+
+      <img
+        class="pointing-illustration"
+        src="/public/images/perfil/ilustracion-senalando.png"
+        alt="Ilustración de Agustina señalando hacia arriba"
+      />
     </div>
-
-    <div class="page-content interview">
-      <p class="kicker">"Una persona que siente mucho, pregunta aún más y se rinde poco."</p>
-
-      <div class="qa-list">
-        {qa.map((item) => (
-          <div class="qa-item">
-            <h3 class="qa-question">{item.q}</h3>
-            <p class="qa-answer">{item.a}</p>
-          </div>
-        ))}
-      </div>
-
-      <div class="extras-grid">
-        <div class="card extra-card">
-          <p class="chip">Fuera de la facu</p>
-          <p>
-            Trabajo en un vivero por las mañanas (amo las plantas). Los findes, suelo estar
-            en cancha de pádel con mis compañeras. Hago gym para descontracturar la espalda 
-            después de tantas horas frente a la compu. Soy una persona muy sociable, amo 
-            juntarme a comer con mis amigas.
-          </p>
-        </div>
-
-        <div class="card extra-card">
-          <p class="chip">Si tu forma de programar fuera un signo</p>
-          <p>
-            Soy 100% Piscis, pero mi forma de programar sería Géminis por la energía:
-            <em>"Tengo una idea → la intento → no funciona → ahora funciona pero no sé por qué →
-            bueno, NO TOQUES NADA."</em> Como personaje, sería Mabel Pines de Gravity Falls:
-            creativa, entusiasta, medio caótica cuando está descubriendo algo, pero con mucha
-            perseverancia cuando quiere que algo salga.
-          </p>
-        </div>
-
-        <div class="card extra-card">
-          <p class="chip">Manías para estudiar/codear</p>
-          <p>
-            Compu prendida, Google Notebook en pantalla, las notas que tomo en clase, hago un resumen, y
-            después otro resumen más para terminar de aprenderlo. Para codear, alguna ayuda de IA
-            al lado para lo que no puedo resolver sola.
-          </p>
-        </div>
-
-        <div class="card extra-card">
-          <p class="chip">Now playing</p>
-          <p>
-            Playlist en aleatorio: Las Pastillas del Abuelo, Lali, Cruzando el Charco, Tan Bionica
-             y a lo random puede llegar a sonar David Bisbal, Arjona, Camila. 
-             No hay género definido, todo suena bien de fondo.
-          </p>
-        </div>
-      </div>
-
-      <div class="closing card">
-        <p class="chip">Mirando para adelante</p>
-        <p>
-          "En 5 años me gustaría estar trabajando de esto que estudié, aplicando todo lo que
-          aprendí y superando nuevos desafíos. Un consejo para quien recién arranca: paciencia.
-          El camino parece largo y difícil, pero con paciencia y dedicación se puede, siempre se
-          puede."
-        </p>
-      </div>
-    </div>
-  </main>
-
-  <PageNav prevHref="/carta-editora" prevLabel="Carta de la editora" nextHref="/proyectos" nextLabel="/Proyectos" />
+  </div>
 </Layout>
 
 <style>
-    .profile-opener {
-        position: relative;
-        padding-bottom: 1rem;
-    }
-    .doodle {
-        width: 100px;
-        position: absolute;
-    }
-    .doodle-shooting-star {
-        top: 1rem;
-        left: 1.5rem;
-        width: 160px;
-    }
-    .doodle--arrow {
-        top: -10%;
-        right: -5%;
-        width: 90px;
-    }
+  .profile-opener { position: relative; }
 
-    .profile-title {
-        color: var(--navy);
-        font-size: clamp(2.2rem, 6vw, 3.2rem);
-        margin: 3rem 0 2.5rem;
-    }
+  .doodle { width: 26%; position: absolute; top: 2%; right: 4%; }
 
-    .polaroid-wrap {
-        position: relative;
-        max-width: 420px;
-        margin: 0 auto;
-    }
-    .polaroid {
-        background: #fdfcf8;
-        border: 2px solid var(--navy);
-        padding: 1rem 1rem 1.5rem;
-        transform: rotate(-2deg);
-        box-shadow: 6px 6px 0 var(--navy);
-    }
-    .polaroid img {
-        width: 100%;
-        aspect-ratio: 4 / 5;
-        object-fit: cover;
-        border: 1px solid var(--navy);
-    }
-    .polaroid-caption {
-        text-align: center;
-        margin-top: 1rem;
-        color: var(--navy);
-        font-size: 1.3rem;
-        line-height: 1.1;
-    }
-    .pointing-illustration {
-        position: absolute;
-        right: -12%;
-        bottom: -8%;
-        width: 46%;
-        z-index: 2;
-    }
+  .profile-title {
+    color: var(--navy);
+    font-size: 7cqw;
+    margin: 4% 0 6%;
+  }
 
-    .interview {
-        padding-top: 2rem;
-    }
-    .kicken {
-        font-style: italic;
-        font-size: 1.2rem;
-        color: var(--violet);
-        text-align: center;
-        max-width: 50ch;
-        margin: 0 auto 2.5rem;
-    }
-
-    .qa-list {
-        display: flex;
-        flex-direction: column;
-        gap: 1.75rem;
-        margin-bottom: 2.5rem;
-    }
-    .qa-question {
-        font-family: var(--font-tag);
-        color: var(--pink);
-        font-size: 1.4rem;
-        margin-bottom: 0.5rem;
-    }
-    .qa-answer {
-        font-size: 1.05rem;
-    }
-
-    .extra-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1.5rem;
-        margin-bottom: 2rem;
-    }
-    .extra-card {
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-    }
-    .extra-card p:last-child {
-        font-size: 0.95rem;
-    }
-    .extra-card em {
-        color: var(--violet);
-    }
-
-    .closing {
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-    }
-    .closing p:last-child {
-        font-style: italic;
-        font-size: 1.05rem;
-    }
-
-    @media (max-width: 640px) {
-        .extras-grid {
-            grid-template-columns: 1fr;
-        }
-        .doodle--arrow {
-            display: none;
-        }
-    }
+  .polaroid-wrap {
+    position: relative;
+    width: 68%;
+    margin: 0 auto;
+    flex: 1;
+  }
+  .polaroid {
+    background: #fdfcf8;
+    border: 2px solid var(--navy);
+    padding: 5% 5% 8%;
+    transform: rotate(-2deg);
+    box-shadow: 5px 5px 0 var(--navy);
+  }
+  .polaroid img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border: 1px solid var(--navy);
+  }
+  .polaroid-caption {
+    text-align: center;
+    margin-top: 6%;
+    color: var(--navy);
+    font-size: 4.5cqw;
+    line-height: 1.1;
+  }
+  .pointing-illustration {
+    position: absolute;
+    right: -14%;
+    bottom: -6%;
+    width: 42%;
+    z-index: 2;
+  }
 </style>
