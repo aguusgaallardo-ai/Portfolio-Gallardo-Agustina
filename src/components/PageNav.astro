@@ -1,18 +1,17 @@
 ---
 interface Props {
-  index: number;
-  total: number;
+  label: string;
   prevHref?: string;
   nextHref?: string;
 }
-const { index, total, prevHref, nextHref } = Astro.props;
+const { label, prevHref, nextHref } = Astro.props;
 ---
 <nav class="page-nav" aria-label="Navegación de la revista">
   {prevHref
     ? <a class="page-nav__btn" href={prevHref}>‹ Anterior</a>
     : <span class="page-nav__btn page-nav__btn--disabled">‹ Anterior</span>}
 
-  <span class="page-nav__count">{index} / {total}</span>
+  <span class="page-nav__count">Pág. {label}</span>
 
   {nextHref
     ? <a class="page-nav__btn" href={nextHref}>Siguiente ›</a>
@@ -33,12 +32,7 @@ const { index, total, prevHref, nextHref } = Astro.props;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
     flex-shrink: 0;
   }
-  .page-nav__btn {
-    text-decoration: none;
-    color: var(--paper);
-    font-weight: 700;
-    white-space: nowrap;
-  }
+  .page-nav__btn { text-decoration: none; color: var(--paper); font-weight: 700; white-space: nowrap; }
   .page-nav__btn--disabled { opacity: 0.3; pointer-events: none; }
   .page-nav__count { opacity: 0.7; }
 </style>
