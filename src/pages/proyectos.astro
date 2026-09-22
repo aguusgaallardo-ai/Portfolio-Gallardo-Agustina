@@ -1,0 +1,105 @@
+---
+import Layout from '../layouts/Layout.astro'
+import PageNav from '../components/PageNav.astro'
+
+const projects = [
+    {
+        name:'Red Emprendedora',
+        subtitle:'La app que nació en el aula y se convirtió en el proyecto final',
+        meta: ['Spring Boot + PostgreSQL', 'Equipo de 4 (Cande, Cami, Lou y Aguus)', 
+            'Instituto Superior de Formación Docente y Técnica N°125', 'En desarrollo desde abril'
+        ],
+        body: 'Todo arrancó como un desafío de la materia Desarrollo de Sistemas Web, pero terminó convirtiendose en el proyecto final. La idea: ayudar a los emprendedores que vienen de otras ciudades a inscribirse en las ferias que organiza el municipio de Rojas sin tener que hacer el trámite de manera presencial. Agiliar lo que hoy es puro papeleo. El verdadero desafío no fue tanto lo técnico, sino el diseño desde cero: pensar qué funcionalidades sumar, cuáles sacar, cómo tenía que verse la plataforma. Todavía hoy, en pleno desarrollo, se sigue discutiendo eso.',
+        quote: 'Es una plataforma que nace de la necesidad de los emprendedores de Rojas: una forma de aligilar tramites online sin tener que caer en lo presencial',
+        color: 'var(--pink)',
+    },
+    {
+        name: 'Libreria Ohana',
+        subtitle: 'Una noche, un desafío',
+        meta: ['Java + Spring Boot', 'Trabajo grupal (mismo equipo de estudio de hace 3 años)', 'Presentado en la Noche de los Institutos'],
+        body: 'Un sistema de gestión pensado para los dueños de una libreria: carga, listado y eliminación de productos. La parde los clientes y proveedores quedó en el tintero -los tiempos de la presentación no dieron para más-. Lo más memorable no fue el código en sí, sino esa noche: gente parándo a preguntar con qué lenguaje habíamos programado, alumnos de escuelas técnicas curiosos por saber cómo habíamos subido la página a internet sin tener un servidor propio. Elogios de verdad por un trabajo bien hecho.',
+        quote: 'Esa noche me quedaron las preguntas de la gente, y los halagos porque realmente hicimos un buen trabajo',
+        color: 'var(--violet)',
+    },
+    {
+        name: 'CosmicCode',
+        subtitle: 'Diseñando un rincón del universo',
+        meta: ['HTML, CSS y JS', 'Trabajo individual', 'Exámen final de Diseño Web'],
+        body: 'Un exámen final donde había que investigar herramientas de diseño web, elegir una favorita, y construir una página propia para presentarla. El nomnre no es casual - Cosmic por el universo, las estrellas, las constelaciones - y el resultado fue una página con estética esotérica, mostrando las herramientas investigadas y la recomendada. Manejé absolutamente todo: desde la paleta de colores y tipografías, hasta las estrellafas fugaces animadas detrás del título.',
+        quote: 'Lo más divertido fue diseñarla de cero: el tamaño de letra, el color, los movimientos de las estrellas fugaces. Eso fue lo que más me gustó hacer.',
+        color: 'var(--turquoise)',
+    },
+];
+---
+<Layout title="Proyectos">
+    <main class="page">
+        <div class="page-content">
+            <p class="eyebrow">Portfolio</p>
+            <h1 class="headline section-title">Los proyectos</h1>
+
+            <div class="projects-list">
+                {projects.map((p) => (
+                    <article class="card project-card" style="{`--accent: ${p.color}`}">
+                        <h2 class="project-name">{p.name}</h2>
+                        <p class="project-subtitle">{p.subtitle}</p>
+
+                        <ul class="project-meta">
+                            {p.meta.map((m) => <li>{m}</li>)}
+                        </ul>
+
+                        <p class="project-body">{p.body}</p>
+
+                        <blockquote class="project-quote">{p.quote}</blockquote>
+                    </article>
+                ))}
+            </div>
+        </div>
+    </main>
+
+    <PageNav prevHref='/perfil' prevLabel='Perfil' nextHref='/herramientas' nextLabel='Herramientas' />
+</Layout>
+
+<style>
+    .selection-title{
+        color: var(--pink);
+        font-size: clamp(2.5rem, 7vw, 4rem);
+        margin: 0.5rem 0 2.5rem;
+        text-shadow: 3px 3px 0 var(--navy);
+    }
+
+    .projects-list { display: flex; flex-direction: column; gap: 2.5rem; }
+    .projects-card { border-color: var(--navy); }
+    .projects-name {
+        font-family: var(--font-headline);
+        color: var(--accent, var(--pink));
+        font-size: clamp(1.8rem, 4vw, 2.4rem);
+        line-height: 1;
+    }
+    .projects-subtitle {
+        font-style: italic;
+        margin-top: 0.5rem;
+        font-size: 1.1rem;
+    }
+    .projects-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 1rem o;
+    }
+    .projects-meta li {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        background: var(--paper);
+        border: 1px solid var(--navy);
+        border-radius: 999px;
+        padding: 0.3rem 0.75rem;
+    }
+    .projects-body { font-size: 1.05rem; margin-bottom: 1.25rem; }
+    .projects-quote {
+        margin: 0;
+        padding-left: 1rem;
+        border-left: 4px solid var(--accent, var(--pink));
+        font-style: italic;
+        color: var(--violet);
+    }
+</style>
