@@ -1,90 +1,115 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import SpreadLayout from '../layouts/SpreadLayout.astro';
 
-const questions = [
-  { q: 'Son las 2 AM y tenés un bug que no cede. ¿Qué hacés?', options: [
-    { letter: 'A', text: 'Lo dejo reposar, mañana lo veo con la cabeza fresca' },
-    { letter: 'B', text: 'Abro 15 pestañas de Stack Overflow y pruebo todo' },
-    { letter: 'C', text: 'Reviso la documentación línea por línea' },
-    { letter: 'D', text: 'No me voy a dormir hasta resolverlo' },
-    { letter: 'E', text: 'Le doy una vuelta creativa, algo que nadie esperaba' },
-    { letter: 'F', text: 'Simplifico todo y voy directo al problema' },
+const leftQuestions = [
+  { q: '1. Son las 2 AM y tenés un bug que no cede.', name: 'q1', options: [
+    { letter: 'A', text: 'Lo dejo reposar hasta mañana' },
+    { letter: 'B', text: '15 pestañas de Stack Overflow' },
+    { letter: 'C', text: 'Reviso la documentación' },
+    { letter: 'D', text: 'No duermo hasta resolverlo' },
+    { letter: 'E', text: 'Una vuelta creativa' },
+    { letter: 'F', text: 'Voy directo al problema' },
   ]},
-  { q: 'Te asignan un proyecto nuevo del que no sabés nada. ¿Primer movimiento?', options: [
-    { letter: 'A', text: 'Empiezo a probar cositas sueltas' },
-    { letter: 'B', text: 'Investigo mil herramientas antes de arrancar' },
+  { q: '2. Proyecto nuevo, no sabés nada. Primer paso.', name: 'q2', options: [
+    { letter: 'A', text: 'Pruebo cositas sueltas' },
+    { letter: 'B', text: 'Investigo mil herramientas' },
     { letter: 'C', text: 'Armo un plan estructurado' },
-    { letter: 'D', text: 'Leo toda la documentación técnica' },
-    { letter: 'E', text: 'Empiezo por la parte que más me copa' },
-    { letter: 'F', text: 'Voy directo a lo esencial' },
+    { letter: 'D', text: 'Leo toda la documentación' },
+    { letter: 'E', text: 'Empiezo por lo que me copa' },
+    { letter: 'F', text: 'Voy a lo esencial' },
   ]},
-  { q: 'Te llega una devolución dura en un code review. ¿Cómo reaccionás?', options: [
-    { letter: 'A', text: 'Lo tomo con calma, lo charlo y ajusto' },
-    { letter: 'B', text: 'Nerviosa, pero lo arreglo en tiempo récord' },
-    { letter: 'C', text: 'Reviso cada comentario como checklist' },
-    { letter: 'D', text: 'Me lo tomo personal y reviso todo' },
-    { letter: 'E', text: 'Le doy mi propio enfoque, distinto' },
-    { letter: 'F', text: 'Aplico los cambios rápido y sigo' },
+  { q: '3. Devolución dura en un code review.', name: 'q3', options: [
+    { letter: 'A', text: 'Lo charlo con calma' },
+    { letter: 'B', text: 'Nerviosa, pero rápido' },
+    { letter: 'C', text: 'Checklist de cada comentario' },
+    { letter: 'D', text: 'Me lo tomo personal' },
+    { letter: 'E', text: 'Mi propio enfoque' },
+    { letter: 'F', text: 'Cambios rápidos y sigo' },
   ]},
-  { q: 'Se acerca la entrega y falta bastante. ¿Qué actitud tomás?', options: [
-    { letter: 'A', text: 'Organizo prioridades y voy tranqui' },
+];
+
+const rightQuestions = [
+  { q: '4. Se acerca la entrega y falta bastante.', name: 'q4', options: [
+    { letter: 'A', text: 'Prioridades, voy tranqui' },
     { letter: 'B', text: 'Modo multitarea total' },
-    { letter: 'C', text: 'Cronograma estricto, al pie de la letra' },
-    { letter: 'D', text: 'Me obsesiono con que salga perfecto' },
-    { letter: 'E', text: 'Busco la forma más creativa de llegar' },
-    { letter: 'F', text: 'Voy a lo mínimo indispensable' },
+    { letter: 'C', text: 'Cronograma estricto' },
+    { letter: 'D', text: 'Me obsesiono con lo perfecto' },
+    { letter: 'E', text: 'La forma más creativa' },
+    { letter: 'F', text: 'Lo mínimo indispensable' },
   ]},
-  { q: 'Elegís tu ambiente ideal para programar.', options: [
+  { q: '5. Tu ambiente ideal para programar.', name: 'q5', options: [
     { letter: 'A', text: 'Algo relajado de fondo' },
-    { letter: 'B', text: 'Playlist random según el humor' },
-    { letter: 'C', text: 'Silencio total, necesito orden' },
-    { letter: 'D', text: 'Algo intenso, tensión y foco' },
-    { letter: 'E', text: 'Algo distinto, fuera de lo común' },
-    { letter: 'F', text: 'Lo que sea, no le doy vueltas' },
+    { letter: 'B', text: 'Playlist random' },
+    { letter: 'C', text: 'Silencio total' },
+    { letter: 'D', text: 'Algo intenso, tensión' },
+    { letter: 'E', text: 'Algo fuera de lo común' },
+    { letter: 'F', text: 'Lo que sea, no importa' },
   ]},
-  { q: 'Un compañero te pide ayuda con su código.', options: [
-    { letter: 'A', text: 'Explico con calma y ejemplos simples' },
-    { letter: 'B', text: 'Tiro mil ideas a la vez' },
-    { letter: 'C', text: 'Armo un paso a paso ordenado' },
+  { q: '6. Un compañero te pide ayuda.', name: 'q6', options: [
+    { letter: 'A', text: 'Explico con calma' },
+    { letter: 'B', text: 'Tiro mil ideas' },
+    { letter: 'C', text: 'Paso a paso ordenado' },
     { letter: 'D', text: 'Reviso todo con lupa' },
-    { letter: 'E', text: 'Propongo una solución distinta' },
-    { letter: 'F', text: 'Doy la solución más directa' },
+    { letter: 'E', text: 'Propongo algo distinto' },
+    { letter: 'F', text: 'La solución más directa' },
   ]},
 ];
 ---
-<Layout title="Test" pageBg="var(--paper)" index={8} total={11} prevHref="/herramientas" nextHref="/contacto">
-  <div class="page-content quiz-page">
-    <p class="eyebrow">¡OMG! Test</p>
-    <h1 class="headline quiz-title">¿Qué lenguaje sos?</h1>
+<SpreadLayout title="Test" label="8–9" prevHref="/proyectos" nextHref="/contacto">
+  <Fragment slot="left">
+    <div class="page-content quiz-page">
+      <p class="eyebrow">¡OMG! Test</p>
+      <h1 class="headline quiz-title">¿Qué lenguaje sos?</h1>
 
-    <form id="quiz-form" class="quiz">
-      {questions.map((item, i) => (
-        <fieldset class="question" data-step={i + 1} hidden={i !== 0}>
-          <p class="question-progress">Pregunta {i + 1} / {questions.length}</p>
-          <legend>{item.q}</legend>
-          <div class="options">
-            {item.options.map((opt) => (
-              <label class="option">
-                <input type="radio" name={`q${i + 1}`} value={opt.letter} />
-                <span class="option-letter">{opt.letter}</span>
-                <span>{opt.text}</span>
-              </label>
-            ))}
-          </div>
-          <div class="step-actions">
-            {i > 0 && <button type="button" class="btn btn--ghost" data-action="prev">‹ Anterior</button>}
-            <span class="spacer"></span>
-            {i < questions.length - 1
-              ? <button type="button" class="btn" data-action="next">Siguiente ›</button>
-              : <button type="submit" class="btn">Ver mi resultado</button>}
-          </div>
-        </fieldset>
-      ))}
-    </form>
+      <div class="mini-questions">
+        {leftQuestions.map((item) => (
+          <fieldset class="mini-question">
+            <legend>{item.q}</legend>
+            <div class="mini-options">
+              {item.options.map((opt) => (
+                <label class="mini-option">
+                  <input type="radio" name={item.name} value={opt.letter} />
+                  <span class="letter">{opt.letter}</span>
+                  <span>{opt.text}</span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
+        ))}
+      </div>
+    </div>
+  </Fragment>
 
-    <div id="quiz-result" class="quiz-result" hidden></div>
+  <Fragment slot="right">
+    <div class="page-content quiz-page">
+      <div class="mini-questions mini-questions--right">
+        {rightQuestions.map((item) => (
+          <fieldset class="mini-question">
+            <legend>{item.q}</legend>
+            <div class="mini-options">
+              {item.options.map((opt) => (
+                <label class="mini-option">
+                  <input type="radio" name={item.name} value={opt.letter} />
+                  <span class="letter">{opt.letter}</span>
+                  <span>{opt.text}</span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
+        ))}
+      </div>
+
+      <button type="button" id="quiz-submit" class="btn quiz-submit">Ver mi resultado</button>
+    </div>
+  </Fragment>
+</SpreadLayout>
+
+<div id="quiz-modal" class="modal-overlay" hidden>
+  <div class="modal-card">
+    <button type="button" id="quiz-modal-close" class="modal-close" aria-label="Cerrar">×</button>
+    <div id="quiz-modal-body" class="modal-body"></div>
   </div>
-</Layout>
+</div>
 
 <script>
   const letterMap: Record<string, string> = { A: 'Python', B: 'JavaScript', C: 'Java', D: 'C++', E: 'Ruby', F: 'Go' };
@@ -98,93 +123,73 @@ const questions = [
     Go: { emoji: '🎯', desc: 'Sos practicidad sin vueltas. Directo a lo que funciona.' },
   };
 
-  const form = document.getElementById('quiz-form') as HTMLFormElement | null;
-  const resultEl = document.getElementById('quiz-result');
-  const steps = Array.from(document.querySelectorAll<HTMLFieldSetElement>('.question'));
+  const submitBtn = document.getElementById('quiz-submit');
+  const overlay = document.getElementById('quiz-modal');
+  const modalBody = document.getElementById('quiz-modal-body');
+  const closeBtn = document.getElementById('quiz-modal-close');
 
-  function showStep(n: number) {
-    steps.forEach((step) => { step.hidden = Number(step.dataset.step) !== n; });
-  }
-
-  form?.addEventListener('click', (e) => {
-    const target = (e.target as HTMLElement).closest<HTMLElement>('[data-action]');
-    if (!target) return;
-    const action = target.dataset.action;
-    const currentStep = steps.find((s) => !s.hidden);
-    if (!currentStep) return;
-    const current = Number(currentStep.dataset.step);
-
-    if (action === 'next') {
-      if (!currentStep.querySelector('input:checked')) return;
-      showStep(current + 1);
-    } else if (action === 'prev') {
-      showStep(current - 1);
-    }
-  });
-
-  form?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (!form) return;
-    const data = new FormData(form);
+  submitBtn?.addEventListener('click', () => {
     const tally: Record<string, number> = {};
 
-    for (let i = 1; i <= steps.length; i++) {
-      const letter = data.get(`q${i}`);
-      if (!letter || typeof letter !== 'string') return;
-      const lang = letterMap[letter];
+    for (let i = 1; i <= 6; i++) {
+      const checked = document.querySelector<HTMLInputElement>(`input[name="q${i}"]:checked`);
+      if (!checked) {
+        alert('Respondé todas las preguntas para ver tu resultado.');
+        return;
+      }
+      const lang = letterMap[checked.value];
       tally[lang] = (tally[lang] || 0) + 1;
     }
 
     const max = Math.max(...Object.values(tally));
     const winners = Object.keys(tally).filter((lang) => tally[lang] === max);
 
-    form.hidden = true;
-    if (resultEl) {
-      resultEl.hidden = false;
-      resultEl.innerHTML = winners
+    if (modalBody) {
+      modalBody.innerHTML = winners
         .map((lang) => {
           const r = results[lang];
           return `<div class="result-card"><span class="result-emoji">${r.emoji}</span><h3>${lang}</h3><p>${r.desc}</p></div>`;
         })
-        .join('');
+        .join('<hr style="border-color:rgba(253,246,238,0.15); margin:0.75rem 0;" />');
     }
+    overlay?.removeAttribute('hidden');
+  });
+
+  closeBtn?.addEventListener('click', () => overlay?.setAttribute('hidden', ''));
+  overlay?.addEventListener('click', (e) => {
+    if (e.target === overlay) overlay.setAttribute('hidden', '');
   });
 </script>
 
 <style>
   .quiz-page { gap: 2%; }
-  .quiz-title { color: var(--pink); font-size: 6.5cqw; margin: 1% 0 3%; text-shadow: 2px 2px 0 var(--navy); }
+  .quiz-title { color: var(--pink); font-size: 6cqw; margin: 1% 0 3%; text-shadow: 2px 2px 0 var(--navy); }
 
-  .quiz { flex: 1; display: flex; flex-direction: column; }
-  .question { border: none; padding: 0; margin: 0; display: flex; flex-direction: column; flex: 1; }
-  .question-progress { font-family: var(--font-mono); font-size: 0.68rem; color: var(--violet); margin-bottom: 0.3rem; }
-  .question legend {
-    padding: 0;
+  .mini-questions { display: flex; flex-direction: column; gap: 3%; flex: 1; }
+  .mini-questions--right { justify-content: flex-start; }
+
+  .mini-question { border: 2px solid var(--navy); border-radius: 10px; padding: 4%; }
+  .mini-question legend {
+    padding: 0 0.3rem;
     font-family: var(--font-tag);
-    font-size: 1.05rem;
-    color: var(--navy);
-    margin-bottom: 3%;
+    font-size: 0.8rem;
+    color: var(--pink);
   }
-  .options { display: flex; flex-direction: column; gap: 2%; flex: 1; }
-  .option {
+  .mini-options { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5%; margin-top: 3%; }
+  .mini-option {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
-    border: 2px solid var(--navy);
-    border-radius: 10px;
-    padding: 0.5rem 0.75rem;
+    gap: 0.25rem;
+    border: 1.5px solid var(--navy);
+    border-radius: 7px;
+    padding: 0.22rem 0.35rem;
+    font-size: 0.56rem;
+    line-height: 1.15;
     cursor: pointer;
-    font-size: 0.78rem;
   }
-  .option:has(input:checked) { background: var(--yellow); }
-  .option-letter { font-family: var(--font-mono); font-weight: 700; color: var(--pink); flex-shrink: 0; }
+  .mini-option:has(input:checked) { background: var(--yellow); }
+  .mini-option .letter { font-family: var(--font-mono); font-weight: 700; color: var(--pink); flex-shrink: 0; }
+  .mini-option input { width: 10px; height: 10px; flex-shrink: 0; }
 
-  .step-actions { display: flex; align-items: center; margin-top: 4%; }
-  .spacer { flex: 1; }
-
-  .quiz-result { display: flex; flex-direction: column; justify-content: center; flex: 1; gap: 1rem; }
-  .result-card { background: var(--navy); color: var(--paper); border-radius: 14px; padding: 8%; text-align: center; }
-  .result-emoji { font-size: 2.5rem; }
-  .result-card h3 { font-family: var(--font-headline); color: var(--yellow); font-size: 1.6rem; margin: 0.4rem 0; }
-  .result-card p { font-size: 0.85rem; }
+  .quiz-submit { margin-top: 4%; align-self: center; }
 </style>
