@@ -28,7 +28,8 @@ import Barcode from '../components/Barcode.astro';
 
     <div class="coverlines">
       <p class="coverline coverline--turq">¡OMG! TEST</p>
-      <p class="coverline coverline--navy">¿Qué LENGUAJE de</p>
+      <p class="coverline coverline--navy">¿Qué</p>
+      <p class="coverline coverline--navy">LENGUAJE de</p>
       <p class="coverline coverline--green">PROGRAMACIÓN</p>
       <p class="coverline coverline--navy">sos?</p>
     </div>
@@ -55,13 +56,13 @@ import Barcode from '../components/Barcode.astro';
 
   <img
     class="cover-illustration"
-    src="/public/images/perfil/foto-brazos-cruzado.png"
+    src="/images/perfil/foto-brazos-cruzado.png"
     alt="Ilustración de Agustina Gallardo con los brazos cruzados"
   />
 </Layout>
 
 <style>
-  .cover { justify-content: space-between; padding-bottom: 4%; padding-right: 42%; }
+  .cover { justify-content: space-between; padding-bottom: 1%; }
 
   .stickers { position: absolute; inset: 0; z-index: 1; }
   .sticker { position: absolute; }
@@ -85,7 +86,7 @@ import Barcode from '../components/Barcode.astro';
     font-family: var(--font-wordmark);
     font-weight: 700;
     line-height: 0.82;
-    font-size: 15cqw;
+    font-size: 11cqw;
   }
   .wordmark span { display: block; }
 
@@ -98,35 +99,40 @@ import Barcode from '../components/Barcode.astro';
     line-height: 1.3;
   }
 
-  .subtitle { font-weight: 700; font-size: 4.4cqw; margin-top: 1%; }
+  .subtitle { font-weight: 700; font-size: 3.6cqw; margin-top: 1%; }
 
-  .coverlines { margin-top: 5%; }
+  .coverlines { max-width: 64%; margin-top: 2%; }
   .coverline {
     font-family: var(--font-headline);
     line-height: 1.05;
-    font-size: 6.6cqw;
+    font-size: 5.2cqw;
     text-shadow: 1.5px 1.5px 0 var(--navy);
   }
   .coverline--turq { color: var(--turquoise); }
   .coverline--green { color: #7ED957; }
   .coverline--navy { color: var(--navy); text-shadow: none; -webkit-text-stroke: 0.5px #fff; }
 
-  .tag { margin-top: 4%; align-self: flex-start; background: var(--yellow); font-size: 2.6cqw; }
+  .tag { margin-top: 3%; align-self: flex-start; background: var(--yellow); font-size: 2.6cqw; }
 
-  .cover-bottom { display: flex; align-items: flex-end; gap: 3cqw; }
+  .cover-bottom { display: flex; align-items: flex-end; gap: 2cqw; max-width: 60%; margin-top: 2%; }
   .burst-wrap { width: 26cqw; flex-shrink: 0; }
-  .burst-text { font-family: var(--font-headline); font-size: 2.8cqw; line-height: 1.05; }
+  .burst-text { font-family: var(--font-headline); font-size: 2.3cqw; line-height: 1.05; }
 
-  .cover-headline .headline { color: #fff; font-size: 6.4cqw; text-shadow: 2px 2px 0 var(--navy); }
-  .tagline { margin-top: 0.6em; font-style: italic; color: #fff; font-size: 2.6cqw; max-width: 20ch; }
+  .cover-headline .headline {
+    color: #fff;
+    font-size: 4.6cqw;
+    overflow-wrap: break-word;
+    text-shadow: 2px 2px 0 var(--navy);
+  }
+  .tagline { margin-top: 0.6em; font-style: italic; color: #fff; font-size: 2.3cqw; max-width: 20ch; }
 
-  .barcode-wrap { margin-top: 4%; }
+  .barcode-wrap { margin-top: 2%; }
 
   .cover-illustration {
     position: absolute;
-    right: -2%;
+    right: -1%;
     bottom: 0;
-    width: 60cqw;
+    width: 40cqw;
     z-index: 3;
     pointer-events: none;
   }
