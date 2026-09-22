@@ -16,9 +16,7 @@
   --font-body: 'Karla', sans-serif;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 html, body {
   margin: 0;
@@ -39,29 +37,11 @@ body {
   justify-content: center;
 }
 
-h1, h2, h3, h4 {
-  margin: 0;
-}
-
-p {
-  margin: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-img {
-  max-width: 100%;
-  display: block;
-}
-
-ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
+h1, h2, h3, h4 { margin: 0; }
+p { margin: 0; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+ul { margin: 0; padding: 0; list-style: none; }
 
 /* --- Marco de revista --- */
 
@@ -102,6 +82,78 @@ ul {
   display: flex;
   flex-direction: column;
 }
+
+/* --- Doble página --- */
+
+.spread {
+  position: relative;
+  display: flex;
+  height: min(88vh, 960px);
+  max-width: 94vw;
+}
+.spread .magazine-page {
+  height: 100%;
+  aspect-ratio: 0.74;
+  max-width: none;
+}
+.spread .page--left { border-radius: 10px 0 0 10px; }
+.spread .page--right { border-radius: 0 10px 10px 0; }
+.spread::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 26px;
+  margin-left: -13px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.16), rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, 0) 55%, rgba(0, 0, 0, 0.16));
+  pointer-events: none;
+  z-index: 6;
+}
+
+@media (max-width: 820px) {
+  .spread { flex-direction: column; height: auto; max-height: 92vh; overflow-y: auto; gap: 0.6rem; }
+  .spread .magazine-page { width: min(92vw, 420px); aspect-ratio: 0.74; height: auto; border-radius: 10px; margin: 0 auto; }
+  .spread::before { display: none; }
+}
+
+/* --- Modal --- */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 1rem;
+}
+.modal-overlay[hidden] { display: none; }
+.modal-card {
+  background: var(--navy);
+  color: var(--paper);
+  border-radius: 18px;
+  padding: 2rem;
+  max-width: 340px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+.modal-close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  color: var(--paper);
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+.modal-body .result-card { display: flex; flex-direction: column; gap: 0.5rem; }
+.modal-body .result-emoji { font-size: 2.6rem; }
+.modal-body h3 { font-family: var(--font-headline); color: var(--yellow); font-size: 1.6rem; }
+.modal-body p { font-size: 0.88rem; }
 
 /* --- Utilidades compartidas --- */
 
@@ -158,7 +210,4 @@ ul {
   padding: 0.25rem 0.7rem;
 }
 
-.tag-bellota {
-  font-family: var(--font-tag);
-  font-weight: 700;
-}
+.tag-bellota { font-family: var(--font-tag); font-weight: 700; }
