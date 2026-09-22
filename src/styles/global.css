@@ -24,16 +24,19 @@ html, body {
   margin: 0;
   padding: 0;
   width: 100%;
-  min-height: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 body {
-  background: var(--paper);
+  background: var(--navy);
   color: var(--navy);
   font-family: var(--font-body);
-  font-size: 17px;
-  line-height: 1.6;
-  overflow-x: hidden;
+  font-size: 16px;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 h1, h2, h3, h4 {
@@ -54,26 +57,59 @@ img {
   display: block;
 }
 
-.page {
-  position: relative;
-  min-height: 100vh;
-  width: 100%;
-  overflow: hidden;
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
+
+/* --- Marco de revista --- */
+
+.magazine-stage {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.1rem;
+  padding: 2vh 1rem;
+}
+
+.magazine-page {
+  position: relative;
+  height: min(88vh, 960px);
+  aspect-ratio: 0.74;
+  max-width: 94vw;
+  background: var(--page-bg, var(--paper));
+  color: var(--page-color, var(--navy));
+  border-radius: 10px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55);
+  overflow-y: auto;
+  overflow-x: hidden;
+  container-type: inline-size;
+  container-name: page;
+  scrollbar-width: thin;
+}
+.magazine-page::-webkit-scrollbar { width: 6px; }
+.magazine-page::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.2); border-radius: 999px; }
 
 .page-content {
   position: relative;
   z-index: 2;
-  max-width: 880px;
-  margin: 0 auto;
-  padding: 3.5rem 1.5rem 2rem;
+  min-height: 100%;
+  padding: 6% 7%;
+  display: flex;
+  flex-direction: column;
 }
+
+/* --- Utilidades compartidas --- */
 
 .eyebrow {
   font-family: var(--font-mono);
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  font-size: 0.72rem;
   color: var(--violet);
   font-weight: 700;
 }
@@ -86,10 +122,10 @@ img {
 
 .card {
   background: #fff;
-  border: 3px solid var(--navy);
-  border-radius: 18px;
-  padding: 1.5rem;
-  box-shadow: 6px 6px 0 var(--navy);
+  border: 2.5px solid var(--navy);
+  border-radius: 14px;
+  padding: 1rem 1.15rem;
+  box-shadow: 4px 4px 0 var(--navy);
 }
 
 .btn {
@@ -98,29 +134,28 @@ img {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  font-size: 0.8rem;
   background: var(--pink);
   color: #fff;
-  border: 3px solid var(--navy);
+  border: 2.5px solid var(--navy);
   border-radius: 999px;
-  padding: 0.85rem 1.75rem;
-  box-shadow: 4px 4px 0 var(--navy);
+  padding: 0.65rem 1.4rem;
+  box-shadow: 3px 3px 0 var(--navy);
   transition: transform 0.15s ease;
   cursor: pointer;
 }
-
-.btn:hover {
-  transform: translate(-2px, -2px);
-}
+.btn:hover { transform: translate(-2px, -2px); }
+.btn--ghost { background: transparent; color: var(--navy); box-shadow: none; }
 
 .chip {
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.68rem;
   font-weight: 700;
   background: var(--yellow);
-  border: 2px solid var(--navy);
+  border: 1.5px solid var(--navy);
   border-radius: 999px;
-  padding: 0.3rem 0.85rem;
+  padding: 0.25rem 0.7rem;
 }
 
 .tag-bellota {
