@@ -41,7 +41,6 @@ const tools = [
     { name: 'Spring Boot', verdict: 'Endpoints, sí señor. Aprendiendo los trucos finos.' },
     { name: 'Python', verdict: 'La entiendo, la leo, todavía no es mi lenguaje de cabecera.' },
     { name: 'Astro', verdict: '¡Esta misma revista es la prueba!' },
-    { name: 'Astro', level: 20, verdict: '¡Esta misma revista es la prueba!' },
 ];
 ---
 <SpreadLayout title="Proyectos" label="6–7" prevHref="/entrevista" nextHref="/test">
@@ -95,7 +94,11 @@ const tools = [
     color: var(--accent);
     font-size: 5cqw;
     line-height: 1;
-    text-shadow: 1px 1px 0 var(--navy);
+    text-shadow: 
+    -1px 1px 0 var(--navy),
+    1px -1px 0 var(--navy),
+    -1px 1px 0 var(--navy),
+    1px 1 px 0 var(--navy);
   }
   .project-name--link { text-decoration: none; cursor: pointer; }
   .project-name--link:hover { text-decoration: underline; text-decoration-color: var(--accent); }
