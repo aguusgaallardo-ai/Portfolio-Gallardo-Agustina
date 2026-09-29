@@ -9,6 +9,7 @@ const projects = [
     body: 'Ayudar a los emprendedores de otras ciudades a inscribirse en las ferias de Rojas sin trámite presencial. El desafío no fue lo técnico, sino el diseño desde cero.',
     quote: 'Una forma de agilizar trámites online sin caer en lo presencial.',
     color: 'var(--pink)',
+    href: null,
   },
   {
     name: 'Librería Ohana',
@@ -17,6 +18,7 @@ const projects = [
     body: 'Sistema de gestión para una librería: carga, listado y eliminación de productos. Lo más memorable: la gente preguntando cómo lo habíamos hecho.',
     quote: 'Me quedaron las preguntas de la gente, y los halagos por un buen trabajo.',
     color: 'var(--violet)',
+    href: 'https://libreria-ohana.netlify.app'
   },
   {
     name: 'CosmicCode',
@@ -25,22 +27,24 @@ const projects = [
     body: 'Examen final de Diseño Web: investigar herramientas de diseño y armar una página propia con estética esotérica, hasta las estrellas fugaces animadas.',
     quote: 'Lo más divertido fue diseñarla de cero, desde el color hasta el movimiento.',
     color: 'var(--turquoise)',
+    href: 'https://cosmiccode-com.netlify.app'
   },
 ];
 
 const tools = [
-  { name: 'HTML / CSS', level: 90, verdict: 'Las bases de todo. Acá me siento en casa.' },
-  { name: 'SQL', level: 85, verdict: 'La consulta favorita, sin vueltas.' },
-  { name: 'Git', level: 85, verdict: 'Commit, push, pull sin drama.' },
-  { name: 'Power BI', level: 85, verdict: 'Números que se vuelven gráficos lindos.' },
-  { name: 'UML', level: 65, verdict: 'Me defiendo modelando clases y diagramas.' },
-  { name: 'Java', level: 60, verdict: 'Con Librería Ohana aprendí a las apuradas.' },
-  { name: 'Spring Boot', level: 60, verdict: 'Endpoints, sí señor. Aprendiendo los trucos finos.' },
-  { name: 'Python', level: 45, verdict: 'La entiendo, la leo, todavía no es mi lenguaje de cabecera.' },
-  { name: 'Astro', level: 20, verdict: '¡Esta misma revista es la prueba!' },
+    { name: 'HTML / CSS', verdict: 'Las bases de todo. Acá me siento en casa.' },
+    { name: 'SQL', verdict: 'La consulta favorita, sin vueltas.' },
+    { name: 'Git', verdict: 'Commit, push, pull sin drama.' },
+    { name: 'Power BI', verdict: 'Números que se vuelven gráficos lindos.' },
+    { name: 'UML', verdict: 'Me defiendo modelando clases y diagramas.' },
+    { name: 'Java', verdict: 'Con Librería Ohana aprendí a las apuradas.' },
+    { name: 'Spring Boot', verdict: 'Endpoints, sí señor. Aprendiendo los trucos finos.' },
+    { name: 'Python', verdict: 'La entiendo, la leo, todavía no es mi lenguaje de cabecera.' },
+    { name: 'Astro', verdict: '¡Esta misma revista es la prueba!' },
+    { name: 'Astro', level: 20, verdict: '¡Esta misma revista es la prueba!' },
 ];
 ---
-<SpreadLayout title="Proyectos" rightBg="var(--navy)" rightColor="var(--paper)" label="6–7" prevHref="/entrevista" nextHref="/test">
+<SpreadLayout title="Proyectos" label="6–7" prevHref="/entrevista" nextHref="/test">
   <Fragment slot="left">
     <div class="page-content projects">
       <p class="eyebrow">Portfolio</p>
@@ -49,7 +53,9 @@ const tools = [
       <div class="projects-grid">
         {projects.map((p, i) => (
           <article class={`card project-card ${i === 2 ? 'project-card--wide' : ''}`} style={`--accent:${p.color}`}>
-            <h2 class="project-name">{p.name}</h2>
+            {p.href
+              ? <a class="project-name project-name--link" href={p.href} target="_blank" rel="noopener">{p.name} ↗</a>
+              : <h2 class="project-name">{p.name}</h2>}
             <p class="project-subtitle">{p.subtitle}</p>
             <p class="project-meta">{p.meta}</p>
             <p class="project-body">{p.body}</p>
@@ -62,17 +68,13 @@ const tools = [
 
   <Fragment slot="right">
     <div class="page-content tools">
-      <p class="eyebrow eyebrow--light">Probamos</p>
-      <h1 class="headline section-title section-title--light">Herramientas</h1>
+      <p class="eyebrow">Probamos</p>
+      <h1 class="headline section-title">Herramientas</h1>
 
       <div class="tools-list">
         {tools.map((t) => (
           <div class="tool-row">
-            <div class="tool-head">
-              <span class="tool-name">{t.name}</span>
-              <span class="tool-level">{t.level}%</span>
-            </div>
-            <div class="tool-bar"><div class="tool-bar-fill" style={`width:${t.level}%`}></div></div>
+            <span class="tool-name">{t.name}</span>
             <p class="tool-verdict">{t.verdict}</p>
           </div>
         ))}
@@ -83,25 +85,27 @@ const tools = [
 
 <style>
   .section-title { color: var(--pink); font-size: 6.5cqw; margin: 1% 0 3%; text-shadow: 2px 2px 0 var(--navy); }
-  .section-title--light { color: var(--yellow); text-shadow: none; }
 
   .projects-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr auto; gap: 3%; flex: 1; }
   .project-card--wide { grid-column: 1 / -1; }
   .project-card { display: flex; flex-direction: column; gap: 0.3rem; }
-  .project-name { font-family: var(--font-headline); color: var(--accent); font-size: 5cqw; line-height: 1; }
+  .project-name {
+    display: inline-block;
+    font-family: var(--font-headline);
+    color: var(--accent);
+    font-size: 5cqw;
+    line-height: 1;
+    text-shadow: 1px 1px 0 var(--navy);
+  }
+  .project-name--link { text-decoration: none; cursor: pointer; }
+  .project-name--link:hover { text-decoration: underline; text-decoration-color: var(--accent); }
   .project-subtitle { font-style: italic; font-size: 0.65rem; }
   .project-meta { font-family: var(--font-mono); font-size: 0.55rem; opacity: 0.7; }
   .project-body { font-size: 0.68rem; line-height: 1.3; }
   .project-quote { margin: 0; padding-left: 0.5rem; border-left: 3px solid var(--accent); font-style: italic; font-size: 0.65rem; color: var(--violet); }
 
-  .tools { color: var(--paper); }
-  .eyebrow--light { color: var(--turquoise); }
-  .tools-list { display: flex; flex-direction: column; gap: 2%; flex: 1; justify-content: space-between; }
-  .tool-row { border-bottom: 1px solid rgba(253, 246, 238, 0.15); padding-bottom: 1.2%; }
-  .tool-head { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.72rem; margin-bottom: 0.2rem; }
-  .tool-name { font-weight: 700; }
-  .tool-level { color: var(--turquoise); }
-  .tool-bar { height: 5px; background: rgba(253, 246, 238, 0.1); border-radius: 999px; overflow: hidden; margin-bottom: 0.25rem; }
-  .tool-bar-fill { height: 100%; background: linear-gradient(90deg, var(--turquoise), var(--violet)); border-radius: 999px; }
-  .tool-verdict { font-size: 0.62rem; opacity: 0.85; }
+  .tools-list { display: flex; flex-direction: column; gap: 2.5%; flex: 1; justify-content: space-between; }
+  .tool-row { border-bottom: 1px solid rgba(27, 27, 47, 0.12); padding-bottom: 1.4%; }
+  .tool-name { font-family: var(--font-mono); font-weight: 700; font-size: 0.85rem; color: var(--pink); }
+  .tool-verdict { font-size: 0.68rem; margin-top: 0.15rem; opacity: 0.85; }
 </style>
