@@ -38,15 +38,34 @@ const {
   </head>
   <body>
     <div class="magazine-stage">
-      <div class="spread">
-        <main class="magazine-page page--left" style={`--page-bg:${leftBg}; --page-color:${leftColor};`}>
-          <slot name="left" />
-        </main>
-        <main class="magazine-page page--right" style={`--page-bg:${rightBg}; --page-color:${rightColor};`}>
-          <slot name="right" />
-        </main>
+      <div class="spread" id="spread">
+        <div class="spread-pages">
+          <main class="magazine-page page--left" style={`--page-bg:${leftBg}; --page-color:${leftColor};`}>
+            <slot name="left" />
+          </main>
+          <main class="magazine-page page--right" style={`--page-bg:${rightBg}; --page-color:${rightColor};`}>
+            <slot name="right" />
+          </main>
+        </div>
+        <div class="spread-toggle">
+          <button type="button" class="spread-dot spread-dot--active" data-side="left" aria-label="Ver hoja izquierda"></button>
+          <button type="button" class="spread-dot" data-side="right" aria-label="Ver hoja derecha"></button>
+        </div>
       </div>
       <PageNav label={label} prevHref={prevHref} nextHref={nextHref} />
     </div>
   </body>
 </html>
+
+<script>
+  document.querySelectorAll('.spread').forEach((spread) => {
+    const dots = spread.querySelectorAll('.spread-dot');
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const side = dot.getAttribute('data-side');
+        spread.classList.toggle('show-right', side === 'right');
+        dots.forEach((d) => d.classList.toggle('spread-dot--active', d === dot));
+      });
+    });
+  });
+</script>
