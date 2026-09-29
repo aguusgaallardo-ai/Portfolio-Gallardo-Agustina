@@ -1,0 +1,65 @@
+---
+import SpreadLayout from '../layouts/SpreadLayout.astro';
+---
+<SpreadLayout title="¿Hablamos?" rightBg="var(--navy)" rightColor="var(--paper)" label="10–11" prevHref="/test" nextHref="/contratapa">
+  <Fragment slot="left">
+    <div class="page-content contact">
+      <p class="eyebrow">Contacto</p>
+      <h1 class="headline section-title">¿Hablamos?</h1>
+
+      <a class="card contact-primary" href="mailto:aguusgaallardo@gmail.com">
+        <span class="contact-icon">📧</span>
+        <span>
+          <strong>aguusgaallardo@gmail.com</strong>
+          <small>Acá respondo más rápido</small>
+        </span>
+      </a>
+
+      <div class="contact-secondary">
+        <a class="card contact-chip" href="https://github.com/aguusgaallardo-ai" target="_blank" rel="noopener">
+          <span class="contact-icon">💻</span>
+          <span><strong>GitHub</strong><small>aguusgaallardo-ai</small></span>
+        </a>
+        <a class="card contact-chip" href="https://www.linkedin.com/in/agustina-gallardo" target="_blank" rel="noopener">
+          <span class="contact-icon">💼</span>
+          <span><strong>LinkedIn</strong><small>agustina-gallardo</small></span>
+        </a>
+      </div>
+    </div>
+  </Fragment>
+
+  <Fragment slot="right">
+    <div class="page-content cv-content">
+      <p class="eyebrow eyebrow--light">Póster central</p>
+
+      <img class="cv-illustration" src="/images/perfil/foto-brazos-cruzado.png" alt="Ilustración de Agustina Gallardo con los brazos cruzados" />
+
+      <div class="cv-text">
+        <h1 class="headline">Agustina<br />Gallardo</h1>
+        <p class="cv-tagline">¿Querés saber más? Llevate el papel completo.</p>
+        <a class="btn" href="/cv/AgustinaGallardo-CV.pdf" download="AgustinaGallardo-CV.pdf">Descargá mi CV</a>
+      </div>
+    </div>
+  </Fragment>
+</SpreadLayout>
+
+<style>
+  .contact { justify-content: center; gap: 1.75rem; }
+  .section-title { color: var(--pink); font-size: 7cqw; margin-bottom: 2%; text-shadow: 2px 2px 0 var(--navy); }
+
+  .contact-primary { display: flex; align-items: center; gap: 1rem; background: var(--yellow); }
+  .contact-primary strong { display: block; font-size: 0.95rem; }
+  .contact-primary small { display: block; opacity: 0.75; font-size: 0.72rem; }
+  .contact-icon { font-size: 1.5rem; }
+
+  .contact-secondary { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+  .contact-chip { display: flex; align-items: center; gap: 0.5rem; }
+  .contact-chip strong { display: block; font-size: 0.8rem; }
+  .contact-chip small { opacity: 0.7; font-size: 0.68rem; }
+
+  .cv-content { color: var(--paper); align-items: center; text-align: center; justify-content: center; gap: 3%; }
+  .eyebrow--light { color: var(--turquoise); align-self: flex-start; }
+  .cv-illustration { width: 60%; }
+  .cv-text .headline { color: var(--yellow); font-size: 7cqw; }
+  .cv-tagline { margin: 4% 0; font-size: 0.85rem; max-width: 24ch; }
+</style>

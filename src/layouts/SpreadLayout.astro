@@ -5,8 +5,10 @@ import PageNav from '../components/PageNav.astro';
 interface Props {
   title: string;
   description?: string;
-  pageBg?: string;
-  pageColor?: string;
+  leftBg?: string;
+  leftColor?: string;
+  rightBg?: string;
+  rightColor?: string;
   label: string;
   prevHref?: string;
   nextHref?: string;
@@ -15,8 +17,10 @@ interface Props {
 const {
   title,
   description = 'Portfolio de Agustina Gallardo — Desarrolladora de Software.',
-  pageBg = 'var(--paper)',
-  pageColor = 'var(--navy)',
+  leftBg = 'var(--paper)',
+  leftColor = 'var(--navy)',
+  rightBg = 'var(--paper)',
+  rightColor = 'var(--navy)',
   label,
   prevHref,
   nextHref,
@@ -34,9 +38,14 @@ const {
   </head>
   <body>
     <div class="magazine-stage">
-      <main class={`magazine-page ${title === 'Tapa' || title === 'Contratapa' ? 'magazine-page--cover' : ''}`} style={`--page-bg:${pageBg}; --page-color:${pageColor};`}>
-        <slot />
-      </main>
+      <div class="spread">
+        <main class="magazine-page page--left" style={`--page-bg:${leftBg}; --page-color:${leftColor};`}>
+          <slot name="left" />
+        </main>
+        <main class="magazine-page page--right" style={`--page-bg:${rightBg}; --page-color:${rightColor};`}>
+          <slot name="right" />
+        </main>
+      </div>
       <PageNav label={label} prevHref={prevHref} nextHref={nextHref} />
     </div>
   </body>

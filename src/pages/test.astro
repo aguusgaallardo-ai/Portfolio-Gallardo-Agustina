@@ -1,0 +1,195 @@
+---
+import SpreadLayout from '../layouts/SpreadLayout.astro';
+
+const leftQuestions = [
+  { q: '1. Son las 2 AM y tenés un bug que no cede.', name: 'q1', options: [
+    { letter: 'A', text: 'Lo dejo reposar hasta mañana' },
+    { letter: 'B', text: '15 pestañas de Stack Overflow' },
+    { letter: 'C', text: 'Reviso la documentación' },
+    { letter: 'D', text: 'No duermo hasta resolverlo' },
+    { letter: 'E', text: 'Una vuelta creativa' },
+    { letter: 'F', text: 'Voy directo al problema' },
+  ]},
+  { q: '2. Proyecto nuevo, no sabés nada. Primer paso.', name: 'q2', options: [
+    { letter: 'A', text: 'Pruebo cositas sueltas' },
+    { letter: 'B', text: 'Investigo mil herramientas' },
+    { letter: 'C', text: 'Armo un plan estructurado' },
+    { letter: 'D', text: 'Leo toda la documentación' },
+    { letter: 'E', text: 'Empiezo por lo que me copa' },
+    { letter: 'F', text: 'Voy a lo esencial' },
+  ]},
+  { q: '3. Devolución dura en un code review.', name: 'q3', options: [
+    { letter: 'A', text: 'Lo charlo con calma' },
+    { letter: 'B', text: 'Nerviosa, pero rápido' },
+    { letter: 'C', text: 'Checklist de cada comentario' },
+    { letter: 'D', text: 'Me lo tomo personal' },
+    { letter: 'E', text: 'Mi propio enfoque' },
+    { letter: 'F', text: 'Cambios rápidos y sigo' },
+  ]},
+];
+
+const rightQuestions = [
+  { q: '4. Se acerca la entrega y falta bastante.', name: 'q4', options: [
+    { letter: 'A', text: 'Prioridades, voy tranqui' },
+    { letter: 'B', text: 'Modo multitarea total' },
+    { letter: 'C', text: 'Cronograma estricto' },
+    { letter: 'D', text: 'Me obsesiono con lo perfecto' },
+    { letter: 'E', text: 'La forma más creativa' },
+    { letter: 'F', text: 'Lo mínimo indispensable' },
+  ]},
+  { q: '5. Tu ambiente ideal para programar.', name: 'q5', options: [
+    { letter: 'A', text: 'Algo relajado de fondo' },
+    { letter: 'B', text: 'Playlist random' },
+    { letter: 'C', text: 'Silencio total' },
+    { letter: 'D', text: 'Algo intenso, tensión' },
+    { letter: 'E', text: 'Algo fuera de lo común' },
+    { letter: 'F', text: 'Lo que sea, no importa' },
+  ]},
+  { q: '6. Un compañero te pide ayuda.', name: 'q6', options: [
+    { letter: 'A', text: 'Explico con calma' },
+    { letter: 'B', text: 'Tiro mil ideas' },
+    { letter: 'C', text: 'Paso a paso ordenado' },
+    { letter: 'D', text: 'Reviso todo con lupa' },
+    { letter: 'E', text: 'Propongo algo distinto' },
+    { letter: 'F', text: 'La solución más directa' },
+  ]},
+];
+---
+<SpreadLayout title="Test" label="8–9" prevHref="/proyectos" nextHref="/contacto">
+  <Fragment slot="left">
+    <div class="page-content quiz-page">
+      <p class="eyebrow">¡OMG! Test</p>
+      <h1 class="headline quiz-title">¿Qué lenguaje sos?</h1>
+
+      <div class="mini-questions">
+        {leftQuestions.map((item) => (
+          <fieldset class="mini-question">
+            <legend>{item.q}</legend>
+            <div class="mini-options">
+              {item.options.map((opt) => (
+                <label class="mini-option">
+                  <input type="radio" name={item.name} value={opt.letter} />
+                  <span class="letter">{opt.letter}</span>
+                  <span>{opt.text}</span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
+        ))}
+      </div>
+    </div>
+  </Fragment>
+
+  <Fragment slot="right">
+    <div class="page-content quiz-page">
+      <div class="mini-questions mini-questions--right">
+        {rightQuestions.map((item) => (
+          <fieldset class="mini-question">
+            <legend>{item.q}</legend>
+            <div class="mini-options">
+              {item.options.map((opt) => (
+                <label class="mini-option">
+                  <input type="radio" name={item.name} value={opt.letter} />
+                  <span class="letter">{opt.letter}</span>
+                  <span>{opt.text}</span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
+        ))}
+      </div>
+
+      <button type="button" id="quiz-submit" class="btn quiz-submit">Ver mi resultado</button>
+    </div>
+  </Fragment>
+</SpreadLayout>
+
+<div id="quiz-modal" class="modal-overlay" hidden>
+  <div class="modal-card">
+    <button type="button" id="quiz-modal-close" class="modal-close" aria-label="Cerrar">×</button>
+    <div id="quiz-modal-body" class="modal-body"></div>
+  </div>
+</div>
+
+<script>
+  const letterMap: Record<string, string> = { A: 'Python', B: 'JavaScript', C: 'Java', D: 'C++', E: 'Ruby', F: 'Go' };
+
+  const results: Record<string, { emoji: string; desc: string }> = {
+    Python: { emoji: '🐍', desc: 'Sos calma en estado puro. Simple, versátil, sin hacer ruido.' },
+    JavaScript: { emoji: '⚡', desc: 'Sos caos organizado. Estás en todos lados, pero siempre funciona.' },
+    Java: { emoji: '☕', desc: 'Sos estructura y disciplina. Con el plan armado, no hay quien te pare.' },
+    'C++': { emoji: '⚙️', desc: 'Sos perfeccionismo absoluto. Sin atajos, hasta que esté exacto.' },
+    Ruby: { emoji: '💎', desc: 'Sos creatividad pura. Tu propio camino, y te sale bien.' },
+    Go: { emoji: '🎯', desc: 'Sos practicidad sin vueltas. Directo a lo que funciona.' },
+  };
+
+  const submitBtn = document.getElementById('quiz-submit');
+  const overlay = document.getElementById('quiz-modal');
+  const modalBody = document.getElementById('quiz-modal-body');
+  const closeBtn = document.getElementById('quiz-modal-close');
+
+  submitBtn?.addEventListener('click', () => {
+    const tally: Record<string, number> = {};
+
+    for (let i = 1; i <= 6; i++) {
+      const checked = document.querySelector<HTMLInputElement>(`input[name="q${i}"]:checked`);
+      if (!checked) {
+        alert('Respondé todas las preguntas para ver tu resultado.');
+        return;
+      }
+      const lang = letterMap[checked.value];
+      tally[lang] = (tally[lang] || 0) + 1;
+    }
+
+    const max = Math.max(...Object.values(tally));
+    const winners = Object.keys(tally).filter((lang) => tally[lang] === max);
+
+    if (modalBody) {
+      modalBody.innerHTML = winners
+        .map((lang) => {
+          const r = results[lang];
+          return `<div class="result-card"><span class="result-emoji">${r.emoji}</span><h3>${lang}</h3><p>${r.desc}</p></div>`;
+        })
+        .join('<hr style="border-color:rgba(253,246,238,0.15); margin:0.75rem 0;" />');
+    }
+    overlay?.removeAttribute('hidden');
+  });
+
+  closeBtn?.addEventListener('click', () => overlay?.setAttribute('hidden', ''));
+  overlay?.addEventListener('click', (e) => {
+    if (e.target === overlay) overlay.setAttribute('hidden', '');
+  });
+</script>
+
+<style>
+  .quiz-page { gap: 2%; }
+  .quiz-title { color: var(--pink); font-size: 6cqw; margin: 1% 0 3%; text-shadow: 2px 2px 0 var(--navy); }
+
+  .mini-questions { display: flex; flex-direction: column; gap: 6%; flex: 1; }
+  .mini-questions--right { justify-content: flex-start; }
+
+  .mini-question { border: 2px solid var(--navy); border-radius: 10px; padding: 4%; }
+  .mini-question legend {
+    padding: 0 0.3rem;
+    font-family: var(--font-tag);
+    font-size: 0.92rem;
+    color: var(--pink);
+  }
+  .mini-options { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5%; margin-top: 3%; }
+  .mini-option {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    border: 1.5px solid var(--navy);
+    border-radius: 7px;
+    padding: 0.28rem 0.4rem;
+    font-size: 0.66rem;
+    line-height: 1.15;
+    cursor: pointer;
+  }
+  .mini-option:has(input:checked) { background: var(--yellow); }
+  .mini-option .letter { font-family: var(--font-mono); font-weight: 700; color: var(--pink); flex-shrink: 0; }
+  .mini-option input { width: 10px; height: 10px; flex-shrink: 0; }
+
+  .quiz-submit { margin-top: 4%; align-self: center; }
+</style>
